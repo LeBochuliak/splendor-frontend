@@ -1,20 +1,17 @@
 .page {
-  --background: #fafafa;
-  --foreground: #fff;
+  --background: #0c1214;
+  --foreground: #f0e9da;
 
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
+  --text-primary: #f0e9da;
+  --text-secondary: #a0aaa8;
+  --text-accent: #cfab68;
 
   display: flex;
   flex: 1;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-geist-sans);
+  font-family: var(--font-intro-sans);
   background-color: var(--background);
 }
 
@@ -24,9 +21,9 @@
   width: 100%;
   max-width: 800px;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
+  align-items: center;
+  gap: 48px;
+  background-color: var(--background);
   padding: 120px 60px;
 }
 
@@ -40,7 +37,7 @@
 
 .intro h1 {
   max-width: 320px;
-  font-size: 40px;
+  font-size: 32px;
   font-weight: 600;
   line-height: 48px;
   letter-spacing: -2.4px;
@@ -56,57 +53,23 @@
   color: var(--text-secondary);
 }
 
-.intro a {
+.intro p span {
   font-weight: 500;
   color: var(--text-primary);
 }
 
-.ctas {
-  display: flex;
-  flex-direction: row;
+.button {
+  background: #1c272a;
+  border: 1px solid #344044;
+  border-radius: 6px;
   width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
+  font-family: var(--font-intro-sans);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--text-primary);
+  text-align: center;
+  padding: 12px;
 }
-
-.ctas a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
-  cursor: pointer;
-  width: fit-content;
-  font-weight: 500;
-}
-
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
-}
-
-a.secondary {
-  border-color: var(--button-secondary-border);
-}
-
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
-}
-
 @media (max-width: 600px) {
   .main {
     padding: 48px 24px;
@@ -124,9 +87,6 @@ a.secondary {
 }
 
 @media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
 
   .page {
     --background: #000;
@@ -141,10 +101,3 @@ a.secondary {
   }
 }
 
-.code {
-  font-family: var(--font-geist-mono);
-  font-size: 0.9em;
-  background: color-mix(in srgb, currentColor 8%, transparent);
-  padding: 0.1em 0.4em;
-  border-radius: 6px;
-}
