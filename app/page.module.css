@@ -1,10 +1,4 @@
 .page {
-  --background: #0c1214;
-  --foreground: #f0e9da;
-
-  --text-primary: #f0e9da;
-  --text-secondary: #a0aaa8;
-  --text-accent: #cfab68;
 
   display: flex;
   flex: 1;

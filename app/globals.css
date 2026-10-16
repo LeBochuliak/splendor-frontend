@@ -1,6 +1,10 @@
 :root {
   --background: #0c1214;
   --foreground: #f0e9da;
+  
+  --text-primary: #f0e9da;
+  --text-secondary: #a0aaa8;
+  --text-accent: #cfab68;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -27,6 +31,8 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -46,4 +52,19 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+.container {
+  margin: 0px 28px;
+  max-width: 1440px;
+  min-width: 1028px;
+}
+button {
+  font-family: inherit;
+  color: var(--text-primary);
+  background-color: transparent;
+  border: none;
+  font-weight: 400;
+  font-size: 12px;
+  cursor: pointer;
 }

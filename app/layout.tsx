@@ -23,7 +23,9 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       lang="en"
       className={`${interSans.variable} ${cormorantMono.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <div className="container">{children}</div>
+      </body>
     </html>
   );
 }
