@@ -12,14 +12,41 @@
 <symbol id="icon-crown" viewBox="0 0 32 32">
 <path fill="none" stroke="#cfab68" style="stroke: var(--color2, #cfab68)" stroke-linejoin="miter" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.6923" d="M6.668 28h18.665M15.417 4.355c0.058-0.105 0.142-0.192 0.245-0.252s0.22-0.093 0.339-0.093c0.119 0 0.236 0.032 0.339 0.093s0.187 0.148 0.245 0.252l3.936 7.472c0.094 0.173 0.225 0.323 0.384 0.439s0.341 0.196 0.534 0.234c0.193 0.037 0.392 0.032 0.583-0.017s0.368-0.139 0.52-0.264l5.702-4.885c0.109-0.089 0.244-0.141 0.385-0.149s0.28 0.030 0.399 0.107c0.118 0.077 0.209 0.189 0.259 0.321s0.057 0.276 0.020 0.412l-3.778 13.661c-0.077 0.28-0.243 0.526-0.473 0.703s-0.511 0.273-0.801 0.276h-16.507c-0.29-0.002-0.572-0.099-0.802-0.275s-0.397-0.424-0.474-0.703l-3.777-13.66c-0.037-0.136-0.030-0.281 0.020-0.412s0.141-0.244 0.259-0.321c0.118-0.077 0.258-0.114 0.399-0.107s0.276 0.059 0.385 0.149l5.701 4.885c0.152 0.125 0.329 0.216 0.52 0.264s0.39 0.054 0.583 0.017c0.193-0.037 0.376-0.117 0.534-0.234s0.29-0.266 0.384-0.439l3.936-7.473z"></path>
 </symbol>
+
 <symbol id="icon-Gem-token" viewBox="0 0 32 32">
-<path fill="#0c1214" style="fill: var(--color3, #0c1214)" d="M16 0.762c8.416 0 15.238 6.822 15.238 15.238s-6.822 15.238-15.238 15.238c-8.416 0-15.238-6.822-15.238-15.238s6.822-15.238 15.238-15.238z"></path>
-<path fill="none" stroke="#e7cb8c" style="stroke: var(--color4, #e7cb8c)" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="1.5238" d="M16 0.762c8.416 0 15.238 6.822 15.238 15.238s-6.822 15.238-15.238 15.238c-8.416 0-15.238-6.822-15.238-15.238s6.822-15.238 15.238-15.238z"></path>
-<path fill="#3389c4" style="fill: var(--color5, #3389c4); stroke: var(--color5, #3389c4)" opacity="0.16" stroke="#3389c4" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="0.7619" d="M27.81 16c0 6.522-5.287 11.81-11.81 11.81s-11.81-5.287-11.81-11.81c0-6.522 5.287-11.81 11.81-11.81s11.81 5.287 11.81 11.81z"></path>
-<path fill="#3389c4" style="fill: var(--color5, #3389c4)" d="M11.488 8.48h9.024l3.008 5.308-7.52 9.732-7.52-9.732 3.008-5.308z"></path>
-<path fill="none" stroke="#fff" style="stroke: var(--color6, #fff)" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="0.381" d="M20.401 8.67l2.891 5.101-7.292 9.436-7.292-9.436 2.891-5.101h8.803z"></path>
-<path fill="none" stroke="#fff" style="stroke: var(--color6, #fff)" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="0.4571" d="M18.016 13.809l-2.016 8.699-2.017-8.699 2.017-4.745 2.016 4.745z"></path>
+  <path
+    fill="var(--token-bg, #0c1214)"
+    d="M16 0.762c8.416 0 15.238 6.822 15.238 15.238s-6.822 15.238-15.238 15.238c-8.416 0-15.238-6.822-15.238-15.238s6.822-15.238 15.238-15.238z"
+  />
+  <path
+    fill="none"
+    stroke="var(--token-border, #e7cb8c)"
+    stroke-width="var(--stroke-width, 0.5)"
+    d="M16 0.762c8.416 0 15.238 6.822 15.238 15.238s-6.822 15.238-15.238 15.238c-8.416 0-15.238-6.822-15.238-15.238s6.822-15.238 15.238-15.238z"
+  />
+  <path
+    fill="var(--gem-color, #3389c4)"
+    opacity="0.16"
+    d="M27.81 16c0 6.522-5.287 11.81-11.81 11.81s-11.81-5.287-11.81-11.81c0-6.522 5.287-11.81 11.81-11.81s11.81 5.287 11.81 11.81z"
+  />
+  <path
+    fill="var(--gem-color, #3389c4)"
+    d="M11.488 8.48h9.024l3.008 5.308-7.52 9.732-7.52-9.732 3.008-5.308z"
+  />
+  <path
+    fill="none"
+    stroke="var(--gem-outline, #fff)"
+    stroke-width="0.3"
+    d="M20.401 8.67l2.891 5.101-7.292 9.436-7.292-9.436 2.891-5.101h8.803z"
+  />
+  <path
+    fill="none"
+    stroke="var(--gem-outline, #fff)"
+    stroke-width="0.3"
+    d="M18.016 13.809l-2.016 8.699-2.017-8.699 2.017-4.745 2.016 4.745z"
+  />
 </symbol>
+
 <symbol id="icon-Gemstone" viewBox="0 0 32 32">
 <path fill="#e5e0d4" style="fill: var(--color7, #e5e0d4)" d="M6.4 0h19.2l6.4 11.294-16 20.706-16-20.706 6.4-11.294z"></path>
 <path fill="none" stroke="#fff" style="stroke: var(--color6, #fff)" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="1" d="M25.309 0.5l6.090 10.75-15.398 19.93-15.4-19.93 6.092-10.75h18.617z"></path>

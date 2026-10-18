@@ -1,5 +1,10 @@
 .header {
     padding-top: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #66563b;
+    margin-bottom: 24px;
+}
+.headerContainer {
     display: flex;
     align-items: center;
 }
@@ -14,6 +19,7 @@
     align-items: center;
     gap: 8px;
     margin: 0 24px;
+    
 }
 .gameType p {
     font-weight: 400;
@@ -22,9 +28,10 @@
 }
 .privatTable {
     color: var(--text-secondary);
+    text-transform: uppercase;
 }
 .logo {
-    width: 212px;
+    width: 200px;
     height: 42px;
     margin: 0 auto;
 }

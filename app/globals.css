@@ -55,9 +55,11 @@ a {
 }
 
 .container {
-  margin: 0px 28px;
+  margin: 0px auto;
+  padding: 0 28px;
   max-width: 1440px;
   min-width: 1028px;
+  
 }
 button {
   font-family: inherit;
@@ -67,4 +69,74 @@ button {
   font-weight: 400;
   font-size: 12px;
   cursor: pointer;
+}
+
+.sectionLabel {
+  font-weight: 600;
+  font-size: 10px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.textInstruction {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  line-height: 150%;
+}
+.gem {
+  --token-bg: #0c1214;
+  --token-border: #e7cb8c;
+  --gem-outline: #ffffff;
+}
+
+.gem--blue {
+  --gem-color: #3389c4;
+  --token-border: #3389c4;;
+}
+
+.gem--green {
+  --gem-color: #309a76;
+  --token-border: #309a76;
+}
+
+.gem--red {
+  --gem-color: #cc625c;
+  --token-border: #cc625c;
+}
+
+.gem--white {
+  --gem-color: #e5e0d4;
+  --token-border: #e5e0d4;
+}
+
+.gem--black {
+  --gem-color: #7e8190;
+  --token-border: #7e8190;
+}
+
+.gem--gold {
+  --gem-color: #cfab68;
+  --token-border: #cfab68;
+}
+
+.gem-selected {
+  --stroke-width: 1.6;
+  --token-border: #e7cb8c;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.hide {
+  display: none;
 }
