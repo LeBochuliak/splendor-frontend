@@ -3,6 +3,8 @@
     border-radius: 16px;
     padding: 16px;
     width: 164px;
+    margin-right: 24px;
+    background-color: var(--container);
 }
 .gemsWrapper {
   display: flex;
@@ -29,7 +31,7 @@
     margin-right: 24px;
     margin-bottom: 4px;
 }
-li:last-child {
+.gemsWrapper:last-child {
     padding-bottom: 12px;
     border-bottom: 1px solid #344044;
 }

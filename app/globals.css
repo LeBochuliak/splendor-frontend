@@ -1,6 +1,9 @@
+@import "modern-normalize";
+
 :root {
   --background: #0c1214;
   --foreground: #f0e9da;
+  --container: #141d20;
   
   --text-primary: #f0e9da;
   --text-secondary: #a0aaa8;
@@ -37,15 +40,46 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-* {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
-
 a {
   color: inherit;
   text-decoration: none;
+}
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+img {
+  display: block;
+  max-width: 100%;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -57,9 +91,9 @@ a {
 .container {
   margin: 0px auto;
   padding: 0 28px;
-  max-width: 1440px;
+  max-width: 1600px;
   min-width: 1028px;
-  
+  display: flex;
 }
 button {
   font-family: inherit;
@@ -139,4 +173,9 @@ button {
 
 .hide {
   display: none;
+}
+
+.cardsWrapper {
+  display: flex;
+  flex-direction: column;
 }

@@ -24,7 +24,7 @@ export default function Home() {
             into magnificent jewels. With simple rules, tactical choices, and
             iconic components, Splendor has become a modern classic, perfect for
           </p>
-          <Link href="/game" className={styles.button}>
+          <Link href="/game-duel" className={styles.button}>
             Game
           </Link>
         </div>

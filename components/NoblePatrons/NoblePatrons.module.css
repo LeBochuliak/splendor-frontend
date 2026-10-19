@@ -1,0 +1,64 @@
+.noblesContainer {
+    width: 1040px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    
+}
+.noblesText {
+    margin-left: auto;
+
+}
+.noblesList {
+    display: flex;
+    gap: 14px;
+}
+.nobleCard {
+    border: 1px solid #66563b;
+    border-radius: 10px;
+    width: 337px;
+    overflow: hidden;
+    display: flex;
+    background-color: var(--container);
+}
+.portrait {
+    margin-right: 12px;
+}
+.infoWrapper {
+    margin-top: 12px;
+}
+.patronTitle {
+    font-weight: 400;
+    font-size: 8px;
+    color: var(--text-accent);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+.patronName {
+    font-family: var(--font-cormorant-sans);
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+.noblePrestige {
+    font-family: var(--font-cormorant-sans);
+    font-size: 26px;
+    color: var(--text-accent);
+}
+.RequiredBonuses {
+    display: flex;
+    gap: 12px;
+}
+.bonus {
+    display: flex;
+    gap: 4px;
+}
+.RequiredBonuses p {
+    font-weight: 600;
+    font-size: 14px;
+}
+.prestigeWrapper {
+    margin-top: 12px;
+    margin: 12px 12px 0 auto;
+}

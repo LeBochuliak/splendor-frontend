@@ -1,0 +1,44 @@
+.cardsContainer {
+    width: 1040px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    margin-top: 12px;
+}
+.InstText {
+    margin-left: auto;
+}
+.level {}
+
+.tier {
+    border: 1px solid #274b5b;
+    border-radius: 6px;
+    padding: 14px 8px;
+    width: 50px;
+    background-color: var(--container);
+}
+.tierLabel {
+    font-size: 8px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    margin-bottom: 34px;
+}
+.tierNumber {
+    border: 1px solid #274b5b;
+    border-radius: 20px;
+    width: 34px;
+    height: 50px;
+    font-family: var(--font-cormorant-sans);
+    font-size: 24px;
+    color: var(--text-accent);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.tierAmount {
+    font-size: 10px;
+    color: var(--text-secondary);
+}
+
+.card {}
