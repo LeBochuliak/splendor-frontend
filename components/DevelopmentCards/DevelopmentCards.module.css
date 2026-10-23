@@ -8,14 +8,25 @@
 .InstText {
     margin-left: auto;
 }
-.level {}
 
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.level {
+    display: flex;
+    gap: 14px;
+}
 .tier {
     border: 1px solid #274b5b;
     border-radius: 6px;
     padding: 14px 8px;
     width: 50px;
     background-color: var(--container);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .tierLabel {
     font-size: 8px;
@@ -34,11 +45,62 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
+    margin-bottom: 34px;
 }
 .tierAmount {
     font-size: 10px;
     color: var(--text-secondary);
 }
 
-.card {}
+.card {
+    border: 1px solid #66563b;
+    border-radius: 10px;
+    width: 233px;
+    height: 168px;
+    box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.31);
+    background: var(--container);
+    background-repeat: no-repeat;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: space-between;
+    justify-content: space-between;
+}
+.cardsPoints {
+    border-radius: 4px;
+    width: 32px;
+    height: 38px;  
+    background: rgba(16, 25, 29, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+     font-weight: 600;
+    font-size: 25px;
+    font-family: var(--font-cormorant-sans);
+    margin: 10px;
+}
+.cardsBonus {
+    border: 1px solid #66563b;
+    border-radius: 4px;
+    width: 32px;
+    height: 32px;
+    background: rgba(16, 25, 29, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+.cardsPrice {
+    display: flex;
+    gap: 10px;
+    margin-left: 10px;
+    margin-top: 44px;
+}
+.cardsPrice li {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.plusIcon {
+    margin-right: 10px;
+    margin-top: 60px;
+}
