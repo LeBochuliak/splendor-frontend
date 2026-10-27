@@ -1,0 +1,68 @@
+.opponentContainer {
+    border: 1px solid #344044;
+    border-radius: 16px;
+    padding: 18px;
+    width: 292px;
+    height: 210px;
+    background-color: var(--container);
+    margin-bottom: 14px;
+}
+.headWrapper {
+    border-bottom: 1px solid #344044;
+    display: flex;
+}
+.opponentInfo {
+    margin-left: 12px;
+}
+.name {
+    font-family: var(--font-cormorant-sans);
+    font-weight: 600;
+    font-size: 21px;
+    margin-bottom: 4px;
+}
+.cards {
+    font-size: 10px;
+    color: var(--text-secondary);
+}
+.points {
+    margin-left: auto;
+    margin-bottom: 12px;
+}
+.points p {
+    font-family: var(--font-cormorant-sans);
+    font-size: 29px;
+    line-height: 100%;
+    color: var(--text-accent);
+}
+.opponentTokens {
+    display: flex;
+    gap: 32px;
+    margin-top: 12px;
+}
+.opponentTokens > li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    
+}
+.reservedCards {
+    font-size: 10px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+.opponentBonuses {
+    display: flex;
+    gap: 16px;
+}
+.opponentBonuses > li {
+    display: flex;
+    gap: 4px;
+}
+.opponentBonuses > .text {
+     color: var(--text-secondary);
+    margin-bottom: 9px;
+}

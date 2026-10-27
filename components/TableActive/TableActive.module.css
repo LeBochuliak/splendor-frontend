@@ -1,0 +1,30 @@
+.activityContainer {
+    border: 1px solid #344044;
+    border-radius: 16px;
+    padding: 14px;
+    width: 292px;
+    background: var(--container);
+    position: relative;
+}
+.iconHistory {
+    position: absolute;
+    right: 14px;
+    top: 14px;
+}
+.textAccent {
+    margin-top: 16px;
+    color: var(--text-accent);
+}
+.firstTurnBox {
+    border-bottom: 1px solid #344044;
+    margin-bottom: 8px;
+}
+.oneTurn > .activity {
+    font-size: 11px;
+    margin-bottom: 6px;
+}
+.oneTurn > .round {
+    font-size: 10px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}

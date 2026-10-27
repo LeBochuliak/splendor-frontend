@@ -179,3 +179,7 @@ button {
   display: flex;
   flex-direction: column;
 }
+.columnWrapper {
+  margin-left: 24px;
+  
+}
