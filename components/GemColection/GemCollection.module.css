@@ -1,0 +1,34 @@
+.gemColectionContainer {
+    padding-top: 24px;
+    
+}
+.gemCollection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 336px;
+    padding-right: 24px;
+    padding-bottom: 32px;
+    border-right: 1px solid #344044;
+}
+.tokensAmount {
+    font-size: 10px;
+    color: var(--text-secondary);
+}
+.gemBar {
+    display: flex;
+    gap: 12px;
+}
+.gemBar > li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+.text {
+    margin-top: 20px;
+    font-size: 10px;
+    color: var(--text-accent);
+    line-height: 150%;
+}

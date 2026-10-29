@@ -1,0 +1,30 @@
+.bonusesContainer {
+    padding: 24px;
+}
+.developmentBonuses {
+    padding-right: 24px;
+    border-right: 1px solid #344044;
+    padding-bottom: 40px;
+}
+.bonusesList {
+    display: flex;
+    gap: 10px;
+}
+.bonusesList > li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #344044;
+    border-radius: 6px;
+    width: 52px;
+    height: 73px;
+    background: #0c1214;
+    font-family: var(--font-cormorant-sans);
+    font-size: 25px;
+}
+.text {
+    font-size: 10px;
+    color: var(--text-secondary);
+    margin-top: 20px;
+}
