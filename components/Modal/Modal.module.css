@@ -9,10 +9,11 @@
     align-items: center;
     justify-content: center;
     z-index: 1000;
+    
 }
 
 .modal {
-    background: #fbfbfb;
+    background-color: var(--container);
     padding: 64px;
     border-radius: 30px;
     max-width: 600px;

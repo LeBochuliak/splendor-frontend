@@ -188,3 +188,6 @@ button {
   border-top: 1px solid #66563b;
   margin-top: 24px;
 }
+.darkPlus {
+    --plus-color: #1c272a;
+}

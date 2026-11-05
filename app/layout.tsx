@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Cormorant, Inter } from 'next/font/google';
 import './globals.css';
+import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
 
 const interSans = Inter({
   variable: '--font-inter-sans',
@@ -23,7 +24,11 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       lang="en"
       className={`${interSans.variable} ${cormorantMono.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <TanStackProvider>
+          {children}
+        </TanStackProvider>
+      </body>
     </html>
   );
 }

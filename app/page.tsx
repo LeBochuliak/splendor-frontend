@@ -25,7 +25,7 @@ export default function Home() {
             iconic components, Splendor has become a modern classic, perfect for
           </p>
           <Link href="/game-duel" className={styles.button}>
-            Game
+            Game for two
           </Link>
         </div>
       </main>
