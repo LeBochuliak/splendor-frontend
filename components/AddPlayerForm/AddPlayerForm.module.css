@@ -77,4 +77,7 @@
     stroke: #0c1214;
     margin-right: 4px;
 }
-.error {}
+.error {
+    text-align: center;
+    margin-top: 20px;
+}

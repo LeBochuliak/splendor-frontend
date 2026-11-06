@@ -7,12 +7,12 @@ interface AddPlayerFormProps {
   onClose: () => void
 }
 const AddPlayerForm =  ({ onClose } : AddPlayerFormProps)=> {
-    const [form, setForm] = useState<string[]>([]);
-    const [name, setName] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [secondName, setSecondName] = useState("");
 
     const mutation = useMutation({
         mutationFn: async (newPlayers: string[] )  => {
-            const res = await axios.post('https://splendor-backend-mbjw.onrender.com/player', newPlayers);
+            const res = await axios.post('https://splendor-backend-mbjw.onrender.com/players', { players: newPlayers });
             return res.data;
         },
         onSuccess: (data) => {
@@ -25,17 +25,11 @@ const AddPlayerForm =  ({ onClose } : AddPlayerFormProps)=> {
         },
     });
 
-   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setName(e.target.value);
-   };
-
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setForm([...form, name]);
-        setName("");
-        console.log(form);
+        const newPlayers = [firstName.trim(), secondName.trim()];
         
-        mutation.mutate(form)
+        mutation.mutate(newPlayers)
   };
 
     return (
@@ -51,8 +45,8 @@ const AddPlayerForm =  ({ onClose } : AddPlayerFormProps)=> {
             name="name"
             type="text"
             placeholder="Name"
-            value={form[0]}
-            onChange={handleChange}
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
             minLength={2}
             maxLength={20}
             required
@@ -64,8 +58,8 @@ const AddPlayerForm =  ({ onClose } : AddPlayerFormProps)=> {
             name="name"
             type="text"
             placeholder="Name"
-            value={form[1]}
-            onChange={handleChange}
+            value={secondName}
+            onChange={(e) => setSecondName(e.target.value)}
             minLength={2}
             maxLength={20}
             required
@@ -87,8 +81,8 @@ const AddPlayerForm =  ({ onClose } : AddPlayerFormProps)=> {
                 </>
                 )}
             </button>
-            {mutation.isError && <p className={styles.error}>Something went wrong. Try again.</p>}
           </div>
+          {mutation.isError && <p className={styles.error}>Something went wrong. Try again.</p>}
         </form>
       </div>
     );

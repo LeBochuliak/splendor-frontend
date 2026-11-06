@@ -15,15 +15,19 @@ import AddPlayerForm from '@/components/AddPlayerForm/AddPlayerForm'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { useState } from 'react';
+import { useGamesStore } from '@/stores/gameStore'
 
 
 export default function GameTable() {
   const [isModalOpen, setIsModalOpen] = useState(true)
+  const { game, setGame } = useGamesStore();
 
   const fetchGame = async () => {
     const res = await axios.get('https://splendor-backend-mbjw.onrender.com/game');
     console.log(res);
     
+    setGame(res.data);
+
     return res.data;
   }
 
@@ -36,7 +40,7 @@ export default function GameTable() {
 
   return (
     <>
-    {isModalOpen && (
+    {(isModalOpen && (game?.players.length < 2)) && (
       <Modal onClose={onClose}><AddPlayerForm onClose={onClose}/></Modal>
     )}
     <div className="container">
