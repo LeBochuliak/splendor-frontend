@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Header from '@/components/Header/Header';
 
 export const metadata: Metadata = {
   title: 'Splendor',
@@ -10,10 +9,9 @@ type LayoutProps = {
   children: React.ReactNode;
 };
 
-export default function RootLayout({ children }: LayoutProps) {
+export default function Layout({ children }: LayoutProps) {
   return (
     <>
-      <Header />
       {children}
     </>
   );

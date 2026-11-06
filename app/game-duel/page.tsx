@@ -10,39 +10,24 @@ import YourMerchant from '@/components/YourMerchant/YourMerchant'
 import GemColection from '@/components/GemColection/GemCollection'
 import YourBonuses from '@/components/YourBonuses/YourBonuses'
 import YourReservedCards from '@/components/YourReservedCards/YourReservedCards'
-import Modal from '@/components/Modal/Modal'
-import AddPlayerForm from '@/components/AddPlayerForm/AddPlayerForm'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { useState } from 'react';
 import { useGamesStore } from '@/stores/gameStore'
+import type { Game } from '@/types/game'
 
 
 export default function GameTable() {
   const [isModalOpen, setIsModalOpen] = useState(true)
   const { game, setGame } = useGamesStore();
 
-  const fetchGame = async () => {
-    const res = await axios.get('https://splendor-backend-mbjw.onrender.com/game');
-    console.log(res);
-    
-    setGame(res.data);
-
-    return res.data;
-  }
-
-  const { data, error, isLoading, isError } = useQuery({
-    queryKey: ['game'],  
-    queryFn: fetchGame,  
-  });
+  console.log('GAME', game);
+  
 
   const onClose = () => {setIsModalOpen(false)};
 
   return (
-    <>
-    {(isModalOpen && (game?.players.length < 2)) && (
-      <Modal onClose={onClose}><AddPlayerForm onClose={onClose}/></Modal>
-    )}
+    <main>
     <div className="container">
       <TokenBank />
       <div className='cardsWrapper'>
@@ -64,6 +49,6 @@ export default function GameTable() {
       </div>
     </div>
     
-    </>
+    </main>
   );
 }

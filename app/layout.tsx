@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Cormorant, Inter } from 'next/font/google';
 import './globals.css';
 import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
+import Header from '@/components/Header/Header';
 
 const interSans = Inter({
   variable: '--font-inter-sans',
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
     >
       <body>
         <TanStackProvider>
+          <Header />
           {children}
         </TanStackProvider>
       </body>

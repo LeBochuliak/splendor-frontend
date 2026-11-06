@@ -2,7 +2,8 @@
     border: 1px solid #344044;
     border-radius: 16px;
     padding: 16px;
-    width: 164px;
+    min-width: 164px;
+    height: 688px;
     margin-right: 24px;
     background-color: var(--container);
 }
