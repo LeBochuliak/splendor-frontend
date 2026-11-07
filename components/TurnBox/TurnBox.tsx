@@ -1,7 +1,11 @@
+'use client'
+
 import styles from './TurnBox.module.css';
-import Image from 'next/image';
+import { useGamesStore } from '@/stores/gameStore';
 
 const TurnBox = () => {
+    const { game } = useGamesStore();
+
     return (
         <div className={styles.turnBoxContainer}>
             <h2 className='sectionLabel'>Your Turn</h2>

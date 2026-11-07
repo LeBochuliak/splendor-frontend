@@ -62,3 +62,10 @@
     margin-top: 12px;
     margin: 12px 12px 0 auto;
 }
+
+.emptyBox {
+    border: 1px solid #66563b;
+    border-radius: 10px;
+    width: 337px;
+    height: 98px;
+}

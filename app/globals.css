@@ -157,13 +157,13 @@ button {
 }
 
 .gem--white {
-  --gem-color: #e5e0d4;
-  --token-border: #e5e0d4;
+  --gem-color: #d1c9b7;
+  --token-border: #d1c9b7;
 }
 
 .gem--black {
-  --gem-color: #7e8190;
-  --token-border: #7e8190;
+  --gem-color: #393a43;
+  --token-border: #393a43;
 }
 
 .gem--gold {

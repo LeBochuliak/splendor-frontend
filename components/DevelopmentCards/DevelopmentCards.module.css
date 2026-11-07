@@ -62,10 +62,9 @@
     background: var(--container);
     background-repeat: no-repeat;
     display: flex;
-    flex-wrap: wrap;
-    align-items: space-between;
+    flex-wrap: wrap; 
     justify-content: space-between;
-    background-size: contain;
+    background-size: contain; 
 }
 .cardsPoints {
     border-radius: 4px;
@@ -95,7 +94,6 @@
     display: flex;
     gap: 10px;
     margin-left: 10px;
-    margin-top: 52px;
 }
 .cardsPrice li {
     display: flex;
@@ -104,5 +102,16 @@
 }
 .plusIcon {
     margin-right: 10px;
-    margin-top: 64px;
+}
+.cardsPriceWrapper {
+    width: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: space-between; 
+}
+.emptyBox {
+    border: 1px solid #66563b;
+    border-radius: 10px;
+    width: 228px;
+    height: 160px;
 }

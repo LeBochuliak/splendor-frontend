@@ -1,6 +1,11 @@
+'use client'
+
 import styles from './TokenBank.module.css';
+import { useGamesStore } from '@/stores/gameStore'
 
 const TokenBank = () => {
+  const { game } = useGamesStore();
+
   return (
     <div className={styles.tokenBankContainer}>
       <h2 className="sectionLabel">Token bank</h2>
@@ -14,7 +19,7 @@ const TokenBank = () => {
           >
             <use href="sprite.svg#icon-Gem-token" />
           </svg>
-          <p className={styles.amount}>4</p>
+          <p className={styles.amount}>{game ? game.tokens.white : 0}{}</p>
           <svg width="15" height="15" className="visually-hidden">
             <use href="sprite.svg#icon-circle-check" />
           </svg>
@@ -24,7 +29,7 @@ const TokenBank = () => {
           <svg width="53" height="53" className={`gem gem--blue ${styles.gem}`}>
             <use href="sprite.svg#icon-Gem-token" />
           </svg>
-          <p className={styles.amount}>4</p>
+          <p className={styles.amount}>{game ? game.tokens.blue : 0}</p>
           <svg width="15" height="15" className="visually-hidden">
             <use href="sprite.svg#icon-circle-check" />
           </svg>
@@ -38,7 +43,7 @@ const TokenBank = () => {
           >
             <use href="sprite.svg#icon-Gem-token" />
           </svg>
-          <p className={styles.amount}>4</p>
+          <p className={styles.amount}>{game ? game.tokens.green : 0}</p>
           <svg width="15" height="15" className="visually-hidden">
             <use href="sprite.svg#icon-circle-check" />
           </svg>
@@ -48,7 +53,7 @@ const TokenBank = () => {
           <svg width="53" height="53" className={`gem gem--red ${styles.gem}`}>
             <use href="sprite.svg#icon-Gem-token" />
           </svg>
-          <p className={styles.amount}>4</p>
+          <p className={styles.amount}>{game ? game.tokens.red : 0}</p>
           <svg width="15" height="15" className="visually-hidden">
             <use href="sprite.svg#icon-circle-check" />
           </svg>
@@ -62,7 +67,7 @@ const TokenBank = () => {
           >
             <use href="sprite.svg#icon-Gem-token" />
           </svg>
-          <p className={styles.amount}>4</p>
+          <p className={styles.amount}>{game ? game.tokens.black : 0}</p>
           <svg width="15" height="15" className="visually-hidden">
             <use href="sprite.svg#icon-circle-check" />
           </svg>
@@ -72,7 +77,7 @@ const TokenBank = () => {
           <svg width="53" height="53" className={`gem gem--gold ${styles.gem}`}>
             <use href="sprite.svg#icon-Gem-token" />
           </svg>
-          <p className={styles.amount}>4</p>
+          <p className={styles.amount}>{game ? game.tokens.gold : 0}</p>
           <svg width="15" height="15" className="visually-hidden">
             <use href="sprite.svg#icon-circle-check" />
           </svg>

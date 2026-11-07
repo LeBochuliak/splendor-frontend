@@ -100,3 +100,9 @@
     font-size: 10px;
     color: var(--text-secondary);
 }
+.emptyBox {
+    width: 176px;
+    height: 124px;
+    border: 1px solid #66563b;
+    border-radius: 10px;
+}

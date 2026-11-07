@@ -6,12 +6,11 @@ import axios from 'axios'
 import { useRouter } from 'next/navigation';
 import { useGamesStore } from '@/stores/gameStore';
 import type { Game } from "@/types/game"
-import { useQuery } from '@tanstack/react-query'
 
 export default function Home() {
   const [firstName, setFirstName] = useState("");
   const [secondName, setSecondName] = useState("");
-  const { game, setGame } = useGamesStore();
+  const { setGame } = useGamesStore();
 
   const router = useRouter();
 
@@ -33,6 +32,7 @@ export default function Home() {
 
     onSuccess: (data) => {
         setGame(data.game);
+        console.log(data);
         
         router.push('/game-duel');
     },
