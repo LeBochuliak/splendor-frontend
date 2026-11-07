@@ -33,6 +33,7 @@
     color: var(--text-accent);
     text-transform: uppercase;
     margin-bottom: 6px;
+    letter-spacing: 0.2em;
 }
 .patronName {
     font-family: var(--font-cormorant-sans);

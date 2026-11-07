@@ -3,6 +3,7 @@
 import styles from './NoblePatrons.module.css';
 import Image from 'next/image';
 import { useGamesStore } from '@/stores/gameStore';
+import { noblesInfo } from '@/public/nobles/nobles';
 
 const NoblePatrons = () => {
     const { game } = useGamesStore();
@@ -15,12 +16,13 @@ const NoblePatrons = () => {
       <ul className={styles.noblesList}>
         {(game) ? 
             game.nobles.map((noble)=> {
+                const info = noblesInfo.find((patron) => patron.id === noble.id)
                 return <li key={noble.id} className={styles.nobleCard}>
-                    <Image src='/Patron-portrait.png' width={76} height={96} alt='Patron portrait'className={styles.portrait}/>
+                    <Image src={`/nobles/${noble.id}.jpg`} width={76} height={96} alt='Patron portrait'className={styles.portrait}/>
             
                     <div className={styles.infoWrapper}>
-                        <p className={styles.patronTitle}>The patron</p>
-                        <p className={styles.patronName}>Isabella of Castile</p>
+                        <p className={styles.patronTitle}>{info?.title}</p>
+                        <p className={styles.patronName}>{info?.name}</p>
                         <ul className={styles.RequiredBonuses}>
                             {(noble.requirement.white > 0) && <li className={styles.bonus}><svg width='15' height='15' className='gem--white'><use href='/sprite.svg#icon-Gemstone'/></svg><p>{noble.requirement.white}</p></li>}
                             {(noble.requirement.blue > 0) && <li className={styles.bonus}><svg width='15' height='15' className='gem--blue'><use href='/sprite.svg#icon-Gemstone'/></svg><p>{noble.requirement.blue}</p></li>}

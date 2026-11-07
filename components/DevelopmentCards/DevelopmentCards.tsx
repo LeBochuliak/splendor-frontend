@@ -25,7 +25,7 @@ const DevelopmentCards = () => {
                         {(game) ? 
                             game.cards.level3.board.map((card)=> {
                                 return <li key={card.id} className={styles.card} style={{
-                                    backgroundImage: `url("/cards/${card.id}.png")`}}>
+                                    backgroundImage: `url("/cards/${card.id}.jpg")`}}>
                                         <p className={styles.cardsPoints}>{card.points}</p>
                                         <div className={styles.cardsBonus}>
                                             <svg width='19' height='19' className={`gem--${card.resource}`}><use href='/sprite.svg#icon-Gemstone'/></svg>
@@ -64,7 +64,7 @@ const DevelopmentCards = () => {
                         {(game) ? 
                             game.cards.level2.board.map((card)=> {
                                 return <li key={card.id} className={styles.card} style={{
-                                    backgroundImage: `url("/cards/${card.id}.png")`}}>
+                                    backgroundImage: `url("/cards/${card.id}.jpg")`}}>
                                         <p className={styles.cardsPoints}>{card.points}</p>
                                         <div className={styles.cardsBonus}>
                                             <svg width='19' height='19' className={`gem--${card.resource}`}><use href='/sprite.svg#icon-Gemstone'/></svg>
@@ -102,7 +102,7 @@ const DevelopmentCards = () => {
                         {(game) ? 
                             game.cards.level1.board.map((card)=> {
                                 return <li key={card.id} className={styles.card} style={{
-                                    backgroundImage: `url("/cards/${card.id}.png")`}}>
+                                    backgroundImage: `url("/cards/${card.id}.jpg")`}}>
                                         <p className={styles.cardsPoints}>{card.points}</p>
                                         <div className={styles.cardsBonus}>
                                             <svg width='19' height='19' className={`gem--${card.resource}`}><use href='/sprite.svg#icon-Gemstone'/></svg>

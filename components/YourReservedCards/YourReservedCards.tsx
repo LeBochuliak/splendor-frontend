@@ -23,7 +23,7 @@ const YourReservedCards = () => {
                 {you && you?.reservedCards.length > 0 ?
                     you?.reservedCards.map(card => {
                         return <li key={card.id} className={styles.slot} style={{
-                            backgroundImage: `url("/cards/${card.id}.png")`}}>
+                            backgroundImage: `url("/cards/${card.id}.jpg")`}}>
                                 <p className={styles.cardsPoints}>{card.points}</p>
                                 <div className={styles.cardsBonus}>
                                     <svg width='19' height='19'><use href='/sprite.svg#icon-Gemstone'/></svg>

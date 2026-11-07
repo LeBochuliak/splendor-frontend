@@ -108,6 +108,7 @@
     display: flex;
     text-align: center;
     justify-content: space-between; 
+    margin-top: 40px;
 }
 .emptyBox {
     border: 1px solid #66563b;
