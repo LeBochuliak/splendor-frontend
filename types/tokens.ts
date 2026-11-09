@@ -1,0 +1,1 @@
+export type Token = 'white' | 'blue' | 'green' | 'red' | 'black' | 'gold';
