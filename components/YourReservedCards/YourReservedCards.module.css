@@ -67,8 +67,9 @@
     margin: 10px;
 }
 .cardsPrice {
+    width: 100%;
     background-color: rgba(16, 25, 29, 0.9);
-    margin-top: 24px;
+    margin: 24px auto 0;
     display: flex;
     gap: 10px;
     padding: 0 8px;
@@ -81,20 +82,6 @@
 .amount {
     font-size: 10px;
     color: var(--text-secondary);
-}
-.buttonWrapper {
-}
-.btn {
-    border: 1px solid #344044;
-    border-radius: 6px;
-    width: 280px;
-    height: 44px;
-    background: #1c272a;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 10px;
 }
 .text {
     font-size: 10px;

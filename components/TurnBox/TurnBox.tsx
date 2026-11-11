@@ -12,7 +12,7 @@ const TurnBox = () => {
     const { game } = useGamesStore();
     const { selectedTokens, newUpdateGame } = useSelectedTokensStore();
     const updateGame = useGamesStore((state) => state.updateGame);
-    const { setGame } = useGamesStore();
+    const setGame = useGamesStore((state) => state.setGame)
     const resetSelectedTokens = useSelectedTokensStore((state) => state.resetSelectedTokens);
 
 

@@ -2,10 +2,14 @@
 
 import styles from './YourReservedCards.module.css'
 import { useGamesStore } from '@/stores/gameStore';
+import BuyCardBtn from '../BuyCardBtn/BuyCardBtn';
+import ReserveBtn from '../ReserveCard.Btn/ReserveCardBtn';
+
 
 const YourReservedCards = () => {
     const { game } = useGamesStore();
     const you = game?.players.find(player => player.id === game.currentPlayerId);
+
 
     return (
         <div className={styles.yourReservedCardsContainer}>
@@ -49,9 +53,9 @@ const YourReservedCards = () => {
 
             </div>
             <div className={styles.buttonWrapper}>
-                <button className={styles.btn} type='button'><svg width='16' height='16'><use href='sprite.svg#icon-shopping-bag'/></svg>Buy a card</button>
-                <button className={styles.btn} type='button'><svg width='16' height='16'><use href='sprite.svg#icon-bookmark'/></svg>Reserve a card</button>
-                <p className={styles.text}>Or select a development on the table.</p>
+                <BuyCardBtn />
+                <ReserveBtn />
+                <p className={styles.text}>Select a development on the table.</p>
             </div>
             </div>
         </div>
