@@ -4,6 +4,7 @@
     padding: 20px;
     padding-bottom: 8px;
     width: 292px;
+    height: 284px;
     background: var(--container);
     margin-bottom: 14px;
 }
@@ -21,17 +22,15 @@
     margin-bottom: 12px;
 }
 
-.choosenTokens > li {}
-
 .choosenTokens > .amount {
     font-size: 11px;
     color: var(--text-accent);
+    margin-left: auto;
 }
 
 .textMove {
     font-size: 10px;
     color: var(--text-accent);
-    margin-bottom: 12px;
 }
 
 .confirmBtn {
@@ -46,6 +45,7 @@
     color: #bbb199;
     align-items: center;
     justify-content: center;
+    margin-top: 8px;
 }
 .clearBtn {
     font-size: 10px;

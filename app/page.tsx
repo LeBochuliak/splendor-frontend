@@ -20,7 +20,7 @@ export default function Home() {
         const gameRes = await axios.post<Game>(
             'https://splendor-backend-mbjw.onrender.com/game'
         );
-        const playersRes = await axios.post(
+        const playersRes = await axios.post<Game>(
             'https://splendor-backend-mbjw.onrender.com/players',
             { players: newPlayers }
         );

@@ -3,7 +3,7 @@
     border-radius: 16px;
     padding: 16px;
     min-width: 164px;
-    height: 688px;
+    height: 676px;
     margin-right: 24px;
     background-color: var(--container);
 }
@@ -18,7 +18,7 @@
     font-size: 28px;
     color: var(--text-primary);
     padding-bottom: 12px;
-    margin-right: 24px;
+    margin-right: 20px;
 }
 .gemsName {
     font-size: 10px;
@@ -26,7 +26,7 @@
     margin-left: 6px;
 }
 .selected {
-    color: var(--text-accent);
+    color: #e7cb8c;
 }
 .gem {
     margin-right: 24px;

@@ -9,6 +9,10 @@ const DevelopmentCards = () => {
     const emptyLevel3 = 4 - (game?.cards.level3.board.length ?? 0);
     const emptyLevel2 = 4 - (game?.cards.level2.board.length ?? 0);
     const emptyLevel1 = 4 - (game?.cards.level1.board.length ?? 0);
+
+    const handleClick = () => {
+        
+    }
     
     return (
         <div className={styles.cardsContainer}>

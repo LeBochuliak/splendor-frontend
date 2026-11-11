@@ -15,7 +15,7 @@ const YourMerchant = () => {
                 <div className={styles.yourProfile}>
                     <Image src='/OpponentPortrait.png' width={52} height={52} alt='Your portrait'/>
                     <div className={styles.yourInfo}>
-                        <p className={styles.youText}>You</p>
+                        <p className={styles.youText}>You · {you?.name}</p>
                         <p className={styles.yourCardsAmount}>{`${you?.developmentCards.length ?? 0} developments`}</p>
                     </div>
                     <div className={styles.yourPoints}>
