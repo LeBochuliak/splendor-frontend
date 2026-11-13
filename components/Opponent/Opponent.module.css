@@ -3,8 +3,9 @@
     border-radius: 16px;
     padding: 18px;
     width: 292px;
+    height: 219px;
     background-color: var(--container);
-    margin-bottom: 14px;
+    /* margin-bottom: 14px; */
 }
 .headWrapper {
     border-bottom: 1px solid #344044;
@@ -35,7 +36,7 @@
 }
 .opponentTokens {
     display: flex;
-    gap: 32px;
+    gap: 28px;
     margin-top: 12px;
 }
 .opponentTokens > li {
@@ -55,11 +56,16 @@
 }
 .opponentBonuses {
     display: flex;
-    gap: 16px;
+    gap: 20px;
+    flex-wrap: wrap;
+    row-gap: 0;
+}
+.opponentBonuses li:first-child {
+    width: 100%;
 }
 .opponentBonuses > li {
     display: flex;
-    gap: 4px;
+    gap: 6px;
 }
 .opponentBonuses > .text {
      color: var(--text-secondary);

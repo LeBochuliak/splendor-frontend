@@ -12,7 +12,7 @@
 .cards {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    /* gap: 16px; */
 }
 .level {
     display: flex;
@@ -29,6 +29,7 @@
     flex-direction: column;
     align-items: center;
     height: 160px;
+    margin-right: 14px;
 }
 .tierLabel {
     font-size: 8px;
@@ -63,7 +64,13 @@
     background: var(--container);
     background-repeat: no-repeat;
     background-size: contain; 
-    margin-left: 18px;
+    margin: 8px 9px;
+}
+.lastLevelCard {
+    margin-bottom: 0;
+}
+.lastLevelTier {
+    margin-top: 8px;
 }
 .cardBtn {
     width: 100%;
@@ -75,16 +82,22 @@
 }
 .cardsPoints {
     border-radius: 4px;
-    width: 32px;
-    height: 38px;  
+    width: 36px;
+    height: 42px;  
     background: rgba(16, 25, 29, 0.8);
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: baseline;
+    align-items: center;
      font-weight: 600;
     font-size: 25px;
     font-family: var(--font-cormorant-sans);
     margin: 10px;
+    position: relative;
+}
+.cardsPoints svg {
+    position: absolute;
+    top: 2px;
 }
 .cardsBonus {
     border: 1px solid #66563b;
@@ -109,6 +122,7 @@
 }
 .plusIcon {
     margin-right: 10px;
+    color: var(--text-secondary);
 }
 .cardsPriceWrapper {
     width: 100%;
@@ -124,13 +138,23 @@
     height: 160px;
 }
 .selectedCard {
-    border: 5px solid #dcc69d;
+    border: 2px solid #dcc69d;
     box-shadow: 0 5px 12px 0 rgba(185, 179, 150, 0.345);
+    
     width: 232px;
-    margin-left: 14px;
+    height: 164px;
+    margin: 6px 7px;
 }
 .selectedTier {
-    border-right: 3px solid #6997aba8;
-    border-left: 3px solid #6997aba8;
+    border: 2px solid #e7cb8c;
     box-shadow: 0 5px 12px 0 rgba(185, 179, 150, 0.345);
+    background: #302e21b9;
+}
+.selectedCardLastLevel {
+    border: 2px solid #dcc69d;
+    box-shadow: 0 5px 12px 0 rgba(185, 179, 150, 0.345);
+    
+    width: 232px;
+    height: 164px;
+    margin: 4px 7px 0;
 }

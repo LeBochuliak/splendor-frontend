@@ -1,0 +1,19 @@
+.turnBoxContainer {
+    border: 1px solid #66563b;
+    border-radius: 16px;
+    padding: 20px;
+    padding-bottom: 8px;
+    width: 292px;
+    height: 284px;
+    background: var(--container);
+    margin-bottom: 14px;
+}
+.titleTurn {
+    font-family: var(--font-cormorant-sans);
+    font-weight: 600;
+    font-size: 30px;
+    margin-bottom: 4px;
+}
+.buttonWrapper {
+    margin-top: 28px;
+}

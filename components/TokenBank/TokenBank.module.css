@@ -2,16 +2,19 @@
     border: 1px solid #344044;
     border-radius: 16px;
     padding: 16px;
-    min-width: 164px;
-    height: 676px;
+    min-width: 168px;
+    height: 685px;
     margin-right: 24px;
     background-color: var(--container);
+}
+.gemsWrapper:last-child .gem {
+    margin-bottom: 8px;
 }
 .gemsWrapper {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 .amount {
     font-family: var(--font-cormorant-sans);
@@ -23,16 +26,55 @@
 .gemsName {
     font-size: 10px;
     color: var(--text-secondary);
-    margin-left: 6px;
+    margin-left: 8px;
 }
 .selected {
     color: #e7cb8c;
 }
 .gem {
     margin-right: 24px;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
 }
 .gemsWrapper:last-child {
     padding-bottom: 12px;
     border-bottom: 1px solid #344044;
+    margin-bottom: 20px;
+}
+
+.textMove {
+    font-size: 10.5px;
+    color: var(--text-accent);
+    height: 24px;
+    display: flex;
+    align-items: end;
+}
+
+.confirmBtn {
+    border: 1px solid #66563b;
+    border-radius: 6px;
+    width: 100%;
+    height: 44px;
+    background: #66563b;
+    display: flex;
+    font-weight: 600;
+    font-size: 12px;
+    color: #bbb199;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8px;
+}
+.clearBtn {
+    font-size: 10px;
+    color: var(--text-secondary);
+    display: block;
+    margin: 12px auto 0;
+}
+.goldText {
+  font-size: 10px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+  line-height: 130%;
+}
+.confirmBtn svg {
+    margin-right: 2px;
 }

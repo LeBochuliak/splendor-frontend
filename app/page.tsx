@@ -83,7 +83,7 @@ export default function Home() {
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
                 minLength={2}
-                maxLength={20}
+                maxLength={10}
                 required
               />
 
@@ -96,11 +96,11 @@ export default function Home() {
                 value={secondName}
                 onChange={(e) => setSecondName(e.target.value)}
                 minLength={2}
-                maxLength={20}
+                maxLength={10}
                 required
               />
 
-              <p className='textInstruction'>The name other merchants will see. 2–20 characters.</p>
+              <p className='textInstruction'>The name other merchants will see. 2–10 characters.</p>
       
               <div className={styles.btnWrapper}>
                 <button type="submit" disabled={mutation.isPending} className={styles.formAddBtn}>

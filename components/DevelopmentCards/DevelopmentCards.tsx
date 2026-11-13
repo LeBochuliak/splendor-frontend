@@ -40,7 +40,6 @@ const DevelopmentCards = () => {
 
         setCardId(cardIdTarget);
         setIsCardSelected(true);
-        console.log(cardId);
         
     }
 
@@ -60,7 +59,6 @@ const DevelopmentCards = () => {
 
         setLevelSelected(level ?? '');
         setIsTierSelected(true);
-        console.log(levelSelected);
     }
 
     return (
@@ -82,7 +80,8 @@ const DevelopmentCards = () => {
                                 return <li key={card.id} className={`${styles.card} ${(cardId === card.id) && styles.selectedCard}`} style={{
                                     backgroundImage: `url("/cards/${card.id}.jpg")`}}>
                                         <button className={styles.cardBtn} onClick={handleClick} type='button' data-id={card.id}>
-                                        <p className={styles.cardsPoints}>{card.points}</p>
+                                        <p className={styles.cardsPoints}>
+                                            <svg width='13' height='13'><use href='sprite.svg#icon-crown'/></svg>{card.points}</p>
                                         <div className={styles.cardsBonus}>
                                             <svg width='19' height='19' className={`gem--${card.resource}`}><use href='/sprite.svg#icon-Gemstone'/></svg>
                                         </div>
@@ -94,7 +93,10 @@ const DevelopmentCards = () => {
                                                 {(card.price.red > 0) && <li className={styles.red}><svg width='13' height='13' className='gem--red'><use href='/sprite.svg#icon-Gemstone'/></svg><p>{card.price.red}</p></li>}
                                                 {(card.price.black > 0) && <li className={styles.black}><svg width='13' height='13' className='gem--black'><use href='/sprite.svg#icon-Gemstone'/></svg><p>{card.price.black}</p></li>}
                                             </ul>
-                                            <svg width='12' height='12' className={styles.plusIcon}><use href='sprite.svg#icon-plus'/></svg>
+                                            {(cardId === card.id) ? 
+                                            <p className={styles.plusIcon}>Selected</p>
+                                            :
+                                            <svg width='12' height='12' className={styles.plusIcon}><use href='sprite.svg#icon-plus'/></svg>}
                                         </div>
                                         </button>
                                     </li>
@@ -125,7 +127,8 @@ const DevelopmentCards = () => {
                                 return <li key={card.id} className={`${styles.card} ${(cardId === card.id) && styles.selectedCard}`} style={{
                                     backgroundImage: `url("/cards/${card.id}.jpg")`}}>
                                         <button className={styles.cardBtn} onClick={handleClick} type='button' data-id={card.id}>
-                                        <p className={styles.cardsPoints}>{card.points}</p>
+                                        <p className={styles.cardsPoints}>
+                                            <svg width='13' height='13'><use href='sprite.svg#icon-crown'/></svg>{card.points}</p>
                                         <div className={styles.cardsBonus}>
                                             <svg width='19' height='19' className={`gem--${card.resource}`}><use href='/sprite.svg#icon-Gemstone'/></svg>
                                         </div>
@@ -137,7 +140,10 @@ const DevelopmentCards = () => {
                                                 {(card.price.red > 0) && <li className={styles.red}><svg width='13' height='13' className='gem--red'><use href='/sprite.svg#icon-Gemstone'/></svg><p>{card.price.red}</p></li>}
                                                 {(card.price.black > 0) && <li className={styles.black}><svg width='13' height='13' className='gem--black'><use href='/sprite.svg#icon-Gemstone'/></svg><p>{card.price.black}</p></li>}
                                             </ul>
-                                            <svg width='12' height='12' className={styles.plusIcon}><use href='sprite.svg#icon-plus'/></svg>
+                                            {(cardId === card.id) ? 
+                                            <p className={styles.plusIcon}>Selected</p>
+                                            :
+                                            <svg width='12' height='12' className={styles.plusIcon}><use href='sprite.svg#icon-plus'/></svg>}
                                         </div>
                                         </button>
                                     </li>
@@ -155,7 +161,7 @@ const DevelopmentCards = () => {
 
                  <li className={styles.cardsLevel}>
                     <ul className={styles.level}>
-                        <li className={`${styles.tier} ${(levelSelected === 'level1') && styles.selectedTier}`} >
+                        <li className={`${styles.tier} ${styles.lastLevelTier} ${(levelSelected === 'level1') && styles.selectedTier}`} >
                             <button type='button' className={styles.tierBtn} data-level='level1' onClick={handleClickTier}> 
                                 <p className={styles.tierLabel}>Tier</p>
                                 <p className={styles.tierNumber}>I</p>
@@ -164,10 +170,11 @@ const DevelopmentCards = () => {
                         </li>
                         {(game) ? 
                             game.cards.level1.board.map((card)=> {
-                                return <li key={card.id} className={`${styles.card} ${(cardId === card.id) && styles.selectedCard}`} style={{
+                                return <li key={card.id} className={`${styles.card} ${styles.lastLevelCard} ${(cardId === card.id) && styles.selectedCardLastLevel}`} style={{
                                     backgroundImage: `url("/cards/${card.id}.jpg")`}}>
                                         <button className={styles.cardBtn} onClick={handleClick} type='button' data-id={card.id}>
-                                        <p className={styles.cardsPoints}>{card.points}</p>
+                                        <p className={styles.cardsPoints}>
+                                            <svg width='13' height='13'><use href='sprite.svg#icon-crown'/></svg>{card.points}</p>
                                         <div className={styles.cardsBonus}>
                                             <svg width='19' height='19' className={`gem--${card.resource}`}><use href='/sprite.svg#icon-Gemstone'/></svg>
                                         </div>
@@ -179,7 +186,10 @@ const DevelopmentCards = () => {
                                                 {(card.price.red > 0) && <li className={styles.red}><svg width='13' height='13' className='gem--red'><use href='/sprite.svg#icon-Gemstone'/></svg><p>{card.price.red}</p></li>}
                                                 {(card.price.black > 0) && <li className={styles.black}><svg width='13' height='13' className='gem--black'><use href='/sprite.svg#icon-Gemstone'/></svg><p>{card.price.black}</p></li>}
                                             </ul>
-                                            <svg width='12' height='12' className={styles.plusIcon}><use href='sprite.svg#icon-plus'/></svg>
+                                            {(cardId === card.id) ? 
+                                            <p className={styles.plusIcon}>Selected</p>
+                                            :
+                                            <svg width='12' height='12' className={styles.plusIcon}><use href='sprite.svg#icon-plus'/></svg>}
                                         </div>
                                         </button>
                                     </li>

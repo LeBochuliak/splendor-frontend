@@ -5,6 +5,9 @@ import { useGamesStore } from '@/stores/gameStore'
 import { useSelectedTokensStore } from '@/stores/selectedTokensStore'
 import type { Token } from '@/types/tokens'
 import { useEffect } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios'
+import type { Game } from '@/types/game';
 
 const TokenBank = () => {
   const { game } = useGamesStore();
@@ -16,6 +19,7 @@ const TokenBank = () => {
   );
   const { selectedTokens, isActive, newUpdateGame } = useSelectedTokensStore();
   const resetSelectedTokens = useSelectedTokensStore((state) => state.resetSelectedTokens);
+  const setGame = useGamesStore((state) => state.setGame)
 
   useEffect(() => {
     resetSelectedTokens();
@@ -100,17 +104,89 @@ const TokenBank = () => {
       [color]: 0,
     });
   }
+    
+  const selectedColors = Object.entries(selectedTokens)
+                                 .filter(([color, value]) => value > 0);
+  const selectedColorsDoubled = selectedColors.filter((color) => color[1] > 1);
+    
+  const selectedColorsArray = selectedColors.flatMap(([color, value]) =>
+        value > 1 ? [color, color] : [color]);
 
+  
+  const textDescription = selectedColorsDoubled[0]
+        ? 'Confirm your selection'
+        : selectedColors.length === 1
+            ? 'Choose one or two more gems from the bank.'
+            : selectedColors.length === 2
+                ? 'Choose one more gem from the bank.'
+                : selectedColors.length === 3 && 'Confirm your selection';
+
+  const mutation = useMutation({
+        mutationFn: async (selectedColorsArray: string[]) => {
+            const GameRes = await axios.patch<Game>('https://splendor-backend-mbjw.onrender.com/action/tokens/takeTokens', {'playerId': game?.currentPlayerId, 'tokens': selectedColorsArray});
+            
+            return {
+            game: GameRes.data
+            };
+        },
+        onMutate: async () => {
+          if (!game) return;
+
+          const previousGameTokens = {
+                    white: game.tokens.white + newUpdateGame.tokens.white,
+                    blue: game.tokens.blue + newUpdateGame.tokens.blue,
+                    green: game.tokens.green + newUpdateGame.tokens.green,
+                    red: game.tokens.red + newUpdateGame.tokens.red,
+                    black: game.tokens.black + newUpdateGame.tokens.black,
+                    gold: game.tokens.gold + newUpdateGame.tokens.gold,
+          }
+          return {previousGameTokens};
+          
+        },
+        onSuccess: (data) => {
+            setGame(data.game);
+        },
+        onError: (error, variables, context) => {
+            console.error("Failed to take tokens", error);
+            if (context ) {
+              updateGame({tokens: context.previousGameTokens})
+            }
+            resetSelectedTokens();
+          }
+
+    })
+    const handleConfirm = () => {
+      if ((selectedColorsDoubled.length > 0  && selectedColorsArray.length === 2) || (selectedColorsArray.length === 3)) {
+        mutation.mutate(selectedColorsArray);
+        resetSelectedTokens();
+      } 
+    };
+    
+    const handleClear = () =>{
+        if (game) {
+            updateGame({
+                tokens: {
+                    white: game.tokens.white + newUpdateGame.tokens.white,
+                    blue: game.tokens.blue + newUpdateGame.tokens.blue,
+                    green: game.tokens.green + newUpdateGame.tokens.green,
+                    red: game.tokens.red + newUpdateGame.tokens.red,
+                    black: game.tokens.black + newUpdateGame.tokens.black,
+                    gold: game.tokens.gold + newUpdateGame.tokens.gold,
+            }
+        })
+        }
+        resetSelectedTokens();
+    }
   return (
     <div className={styles.tokenBankContainer}>
       <h2 className="sectionLabel">Token bank</h2>
-      <p className="textInstruction">Select gems to add to your collection.</p>
+      {/* <p className="textInstruction">Select gems to add to your collection.</p> */}
       <ul>
         <li className={styles.gemsWrapper}>
           <button type='button' onClick={handleClick} data-color="white">
             <svg
-            width="53"
-            height="53"
+            width="50"
+            height="50"
             className={`gem gem--white ${styles.gem} ${
               isActive['white'] ? 'gemSelected' : ''
             }`}
@@ -130,8 +206,8 @@ const TokenBank = () => {
         <li className={styles.gemsWrapper}>
           <button type='button' onClick={handleClick} data-color="blue">
             <svg
-            width="53"
-            height="53"
+            width="50"
+            height="50"
             className={`gem gem--blue ${styles.gem} ${
               isActive['blue'] ? 'gemSelected' : ''
             }`}
@@ -151,8 +227,8 @@ const TokenBank = () => {
         <li className={styles.gemsWrapper}>
           <button type='button' onClick={handleClick} data-color="green">
             <svg
-            width="53"
-            height="53"
+            width="50"
+            height="50"
             className={`gem gem--green ${styles.gem} ${
               isActive['green'] ? 'gemSelected' : ''
             }`}
@@ -172,8 +248,8 @@ const TokenBank = () => {
         <li className={styles.gemsWrapper}>
           <button type='button' onClick={handleClick} data-color="red">
             <svg
-            width="53"
-            height="53"
+            width="50"
+            height="50"
             className={`gem gem--red ${styles.gem} ${
               isActive['red'] ? 'gemSelected' : ''
             }`}
@@ -193,8 +269,8 @@ const TokenBank = () => {
         <li className={styles.gemsWrapper}>
           <button type='button' onClick={handleClick} data-color="black">
             <svg
-            width="53"
-            height="53"
+            width="50"
+            height="50"
             className={`gem gem--black ${styles.gem} ${
               isActive['black'] ? 'gemSelected' : ''
             }`}
@@ -212,7 +288,7 @@ const TokenBank = () => {
         </li>
 
         <li className={styles.gemsWrapper}>
-          <svg width="53" height="53" className={`gem gem--gold ${styles.gem}`}>
+          <svg width="50" height="50" className={`gem gem--gold ${styles.gem}`}>
             <use href="sprite.svg#icon-Gem-token" />
           </svg>
           <p className={styles.amount}>{game ? game.tokens.gold : 0}</p>
@@ -220,9 +296,15 @@ const TokenBank = () => {
             <use href="sprite.svg#icon-circle-check" />
           </svg>
           <p className={styles.gemsName}>Gold joker</p>
+
+      <p className={styles.goldText}>Reserve a card to receive a gold joker.</p>
         </li>
       </ul>
-      <p className="textInstruction">Reserve a card to receive a gold joker.</p>
+      <div className={styles.BtnWrapper}>
+            <p className={styles.textMove}>{textDescription ? textDescription : 'Choose two or three more gems from the bank.'}</p>
+            <button type='button' className={styles.confirmBtn} onClick={handleConfirm}><svg width='13' height='13'><use href='sprite.svg#icon-check'/></svg>Confirm selection</button>
+            <button type='button' className={styles.clearBtn} onClick={handleClear}>Clear selection</button>
+      </div>
     </div>
   );
 };

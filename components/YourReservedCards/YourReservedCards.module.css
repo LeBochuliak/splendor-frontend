@@ -4,6 +4,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: baseline;
+    width: 100%;
 }
 .headerWrapper {
     display: flex;
@@ -11,49 +12,53 @@
     justify-content: space-between;
     margin-bottom: 44px;
 }
-.slots {
-  display: flex;
-  align-items: center;
+.list {
+    display: flex;
+    gap: 12px;
 }
 
 .slot {
-  width: 176px;
+  width: 172px;
   height: 124px;
+  border: 2px solid var(--container);
   flex-shrink: 0;
   overflow: hidden;
   border-radius: 8px;
   background: var(--container);
   background-size: cover;
+}
+.cardBtn {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  width: 100%;
+  height: 100%;
 }
-
-.slot img {
+.cardBtn img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.slots button {
-  width: 28px;
-  height: 36px;
-  padding: 0;
-  cursor: pointer;
-}
 .cardsPoints {
     border-radius: 4px;
     width: 32px;
-    height: 32px;  
+    height: 38px;  
     background: rgba(16, 25, 29, 0.8);
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: baseline;
+    align-items: center;
      font-weight: 600;
-    font-size: 22px;
+    font-size: 24px;
     font-family: var(--font-cormorant-sans);
     margin: 10px;
+    position: relative;
+}
+.cardsPoints svg {
+    position: absolute;
+    top: 2px;
 }
 .cardsBonus {
     border: 1px solid #66563b;
@@ -68,7 +73,7 @@
 }
 .cardsPrice {
     width: 100%;
-    background-color: rgba(16, 25, 29, 0.9);
+    background-color: rgba(16, 25, 29);
     margin: 24px auto 0;
     display: flex;
     gap: 10px;
@@ -88,8 +93,12 @@
     color: var(--text-secondary);
 }
 .emptyBox {
-    width: 176px;
+    width: 172px;
     height: 124px;
     border: 1px solid #66563b;
     border-radius: 10px;
+}
+.selectedCard {
+    border: 2px solid #dcc69d;
+    box-shadow: 0 5px 12px 0 rgba(185, 179, 150, 0.345);
 }

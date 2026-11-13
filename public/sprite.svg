@@ -3,9 +3,6 @@
 <symbol id="icon-bookmark" viewBox="0 0 32 32">
 <path fill="none" stroke="#a0aaa8" style="stroke: var(--color1, #a0aaa8)" stroke-linejoin="miter" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M24.553 4.781c-0.5-0.5-1.179-0.781-1.886-0.781h-13.335c-0.707 0-1.386 0.281-1.886 0.781s-0.781 1.178-0.781 1.886v20c0 0.234 0.061 0.463 0.178 0.665s0.284 0.371 0.486 0.488 0.431 0.179 0.665 0.18c0.234 0.001 0.463-0.060 0.666-0.176l6.017-3.437c0.403-0.23 0.859-0.351 1.323-0.351s0.92 0.121 1.323 0.351l6.017 3.437c0.203 0.116 0.432 0.176 0.666 0.176s0.463-0.063 0.665-0.18 0.37-0.285 0.486-0.488c0.117-0.202 0.178-0.432 0.178-0.665v-20c0-0.707-0.281-1.386-0.781-1.886z"></path>
 </symbol>
-<symbol id="icon-check" viewBox="0 0 32 32">
-<path stroke-linejoin="miter" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M26.666 8l-14.665 14.666-6.666-6.666"></path>
-</symbol>
 <symbol id="icon-circle-check" viewBox="0 0 32 32">
 <path fill="none" stroke="#cfab68" style="stroke: var(--color2, #cfab68)" stroke-linejoin="miter" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.2" d="M12 16l2.667 2.667 5.334-5.334M29.334 16c0 7.364-5.97 13.334-13.334 13.334s-13.334-5.97-13.334-13.334c0-7.364 5.97-13.334 13.334-13.334s13.334 5.97 13.334 13.334z"></path>
 </symbol>
@@ -88,6 +85,9 @@
 </symbol>
 <symbol id="icon-circle-check-double" viewBox="0 0 32 32">
 <path fill="none" stroke="#cfab68" style="stroke: var(--color1, #cfab68)" stroke-linejoin="miter" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.5263" d="M10.667 12.885l3.468 2.667 6.076-5.447M10.667 19.734l3.468 2.667 6.076-5.559M28.802 15.468c0 7.364-5.97 13.334-13.334 13.334s-13.334-5.97-13.334-13.334c0-7.364 5.97-13.334 13.334-13.334s13.334 5.97 13.334 13.334z"></path>
+</symbol>
+<symbol id="icon-check" viewBox="0 0 24 24">
+<path d="M19.293 5.293l-10.293 10.293-4.293-4.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414l5 5c0.391 0.391 1.024 0.391 1.414 0l11-11c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0z"></path>
 </symbol>
 </defs>
 </svg>

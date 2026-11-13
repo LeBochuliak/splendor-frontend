@@ -2,7 +2,7 @@ import TokenBank from '@/components/TokenBank/TokenBank';
 import NoblePatrons from '@/components/NoblePatrons/NoblePatrons'
 import DevelopmentCards from '@/components/DevelopmentCards/DevelopmentCards'
 import Opponent from '@/components/Opponent/Opponent'
-import TurnBox from '@/components/TurnBox/TurnBox'
+import ButtonBox from '@/components/ButtonBox/ButtonBox'
 import TableActive from '@/components/TableActive/TableActive'
 import YourMerchant from '@/components/YourMerchant/YourMerchant'
 import GemColection from '@/components/YourGemColection/YourGemCollection'
@@ -21,7 +21,7 @@ export default function GameTable() {
       </div>
       <div className='columnWrapper'>
         <Opponent />
-        <TurnBox />
+        < ButtonBox />
         <TableActive />
       </div>
     </div>
