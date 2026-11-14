@@ -1,0 +1,45 @@
+.winnerBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.trophy {
+    font-size: 64px;
+    margin-bottom: 15px;
+}
+
+.subtitle {
+    color: var(--text-accent);
+    font-size: 12px;
+    letter-spacing: 4px;
+    font-weight: 700;
+}
+
+.title {
+    font-size: 28px;
+    margin: 15px 0;
+}
+
+.winnerName {
+    font-size: 23px;
+    font-weight: 700;
+    color: var(--text-accent);
+}
+
+.score {
+    margin: 25px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.score span {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--text-accent);
+}
+
+.score p {
+    font-size: 13px;
+}
+

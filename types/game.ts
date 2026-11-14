@@ -7,6 +7,7 @@ export interface Game {
     players: Player[],
     currentPlayerId: string | null,
     finalRound: boolean,
+    winner: Player | null;
 
   tokens: {
     white: number,

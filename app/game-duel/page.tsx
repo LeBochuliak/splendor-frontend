@@ -12,6 +12,7 @@ import YourBonuses from '@/components/YourBonuses/YourBonuses'
 import YourReservedCards from '@/components/YourReservedCards/YourReservedCards'
 import ReturnTokens from '@/components/ReturnTokens/ReturnTokens'
 import Modal from '@/components/Modal/Modal'; 
+import Winner from '@/components/Winner/Winner'
 import { useModalStore } from '@/stores/modalStore';
 import { useGamesStore } from '@/stores/gameStore';
 
@@ -44,6 +45,7 @@ export default function GameTable() {
       </div>
     </div>
     {((player?.totalTokens ?? 0) > 10) && <Modal onClose={()=> setIsModalOpened(false)}><ReturnTokens/></Modal>}
+    {game?.status === 'finished' && game.winner && <Modal onClose={()=> setIsModalOpened(false)}><Winner winner={game.winner} points={game.winner.points}/></Modal>}
     </main>
   );
 }

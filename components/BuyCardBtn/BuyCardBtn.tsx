@@ -5,7 +5,6 @@ import { useGamesStore } from '@/stores/gameStore';
 import { useCardStore } from '@/stores/cardStore'
 import { useActionStore } from '@/stores/actionStore'
 
-
 const BuyCardBtn = () => {
     const { game } = useGamesStore();
     const setGame = useGamesStore((state) => state.setGame);
@@ -37,6 +36,7 @@ const BuyCardBtn = () => {
             setGame(data.game);
             setIsCardSelected(false);
             setCardId(0);
+
         },
         onError: (error) => {
             console.error("Failed to buy the card", error);
