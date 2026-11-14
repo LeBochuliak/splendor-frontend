@@ -8,6 +8,8 @@ import { useEffect } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios'
 import type { Game } from '@/types/game';
+import { useActionStore } from '@/stores/actionStore';
+import { useModalStore } from '@/stores/modalStore';
 
 const TokenBank = () => {
   const { game } = useGamesStore();
@@ -19,11 +21,16 @@ const TokenBank = () => {
   );
   const { selectedTokens, isActive, newUpdateGame } = useSelectedTokensStore();
   const resetSelectedTokens = useSelectedTokensStore((state) => state.resetSelectedTokens);
-  const setGame = useGamesStore((state) => state.setGame)
+  const setGame = useGamesStore((state) => state.setGame);
+  const addAction = useActionStore(state => state.addAction);
+  const { isModalOpened } = useModalStore();
+  const setIsModalOpened = useModalStore((state) => state.setIsModalOpened);
 
   useEffect(() => {
     resetSelectedTokens();
   }, [resetSelectedTokens]);
+
+  const player = game?.players.find((player) => player.id === game.currentPlayerId);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const color = e.currentTarget.dataset.color as Token;
@@ -132,6 +139,13 @@ const TokenBank = () => {
         onMutate: async () => {
           if (!game) return;
 
+          addAction({
+                id: crypto.randomUUID(),
+                playerName: player?.name || 'Player',
+                action: `took gems: ${selectedColorsArray.join(', ')}`,
+                cardPoints: 0
+            });
+            
           const previousGameTokens = {
                     white: game.tokens.white + newUpdateGame.tokens.white,
                     blue: game.tokens.blue + newUpdateGame.tokens.blue,

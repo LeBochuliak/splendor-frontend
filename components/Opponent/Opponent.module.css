@@ -3,9 +3,8 @@
     border-radius: 16px;
     padding: 18px;
     width: 292px;
-    height: 219px;
+    height: 212px;
     background-color: var(--container);
-    /* margin-bottom: 14px; */
 }
 .headWrapper {
     border-bottom: 1px solid #344044;
@@ -56,16 +55,13 @@
 }
 .opponentBonuses {
     display: flex;
-    gap: 20px;
+    gap: 14px;
     flex-wrap: wrap;
     row-gap: 0;
 }
-.opponentBonuses li:first-child {
-    width: 100%;
-}
 .opponentBonuses > li {
     display: flex;
-    gap: 6px;
+    gap: 4px;
 }
 .opponentBonuses > .text {
      color: var(--text-secondary);

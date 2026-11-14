@@ -15,6 +15,7 @@ const DevelopmentCards = () => {
     const isTierSelected = useCardStore((state) => state.isTierSelected);
     const setLevelSelected = useCardStore((state) => state.setLevelSelected);
     const setIsTierSelected = useCardStore((state) => state.setIsTierSelected);
+    const setCardPoints = useCardStore((state) => state.setCardPoints);
 
     const emptyLevel3 = 4 - (game?.cards.level3.board.length ?? 0);
     const emptyLevel2 = 4 - (game?.cards.level2.board.length ?? 0);
@@ -24,8 +25,16 @@ const DevelopmentCards = () => {
         resetCardSelected()
     }, [resetCardSelected]);
 
+    const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (event.target === event.currentTarget) {
+        resetCardSelected();
+    }
+    };
+
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         const cardIdTarget = Number(e.currentTarget.dataset.id);
+        const cardPoints = Number(e.currentTarget.dataset.points);
+        setCardPoints(cardPoints);
 
         if (isTierSelected) {
             setIsTierSelected(false);
@@ -62,7 +71,7 @@ const DevelopmentCards = () => {
     }
 
     return (
-        <div className={styles.cardsContainer}>
+        <div className={styles.cardsContainer} onClick={handleBackdropClick}>
             <h2 className='sectionLabel'>Development cards</h2>
             <p className={`textInstruction ${styles.InstText}`}>Prestige at left · Gem bonus at right · Cost below</p>
             <ul className={styles.cards}>
@@ -79,7 +88,7 @@ const DevelopmentCards = () => {
                             game.cards.level3.board.map((card)=> {
                                 return <li key={card.id} className={`${styles.card} ${(cardId === card.id) && styles.selectedCard}`} style={{
                                     backgroundImage: `url("/cards/${card.id}.jpg")`}}>
-                                        <button className={styles.cardBtn} onClick={handleClick} type='button' data-id={card.id}>
+                                        <button className={styles.cardBtn} onClick={handleClick} type='button' data-id={card.id} data-points={card.points}>
                                         <p className={styles.cardsPoints}>
                                             <svg width='13' height='13'><use href='sprite.svg#icon-crown'/></svg>{card.points}</p>
                                         <div className={styles.cardsBonus}>

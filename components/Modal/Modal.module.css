@@ -23,11 +23,12 @@
 }
 
 .closeButton {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     background-color: transparent;
     border: none;
     position: absolute;
     top: 20px;
     right: 20px;
+    fill: var(--text-secondary);
 }

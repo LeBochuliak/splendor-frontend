@@ -3,16 +3,21 @@ import { useMutation } from '@tanstack/react-query';
 import type { Game } from '@/types/game';
 import { useGamesStore } from '@/stores/gameStore';
 import { useCardStore } from '@/stores/cardStore'
+import { useActionStore } from '@/stores/actionStore'
 
 
 const BuyCardBtn = () => {
     const { game } = useGamesStore();
     const setGame = useGamesStore((state) => state.setGame);
-    const { cardId } = useCardStore();
+    const { cardId, cardPoints } = useCardStore();
     const isCardSelected = useCardStore((state) => state.isCardSelected);
     const setIsCardSelected = useCardStore((state) => state.setIsCardSelected);
     const setCardId = useCardStore((state) => state.setCardId);
+    const addAction = useActionStore(state => state.addAction);
 
+
+    const player = game?.players.find((player) => player.id === game.currentPlayerId);
+    const reservedCard = player?.reservedCards.find((card) => card.id === cardId);
 
     const mutation = useMutation({
         mutationFn: async (cardId: number) => {
@@ -23,6 +28,12 @@ const BuyCardBtn = () => {
             }
         },
         onSuccess: (data) => {
+            addAction({
+                id: crypto.randomUUID(),
+                playerName: player?.name || 'Player',
+                action: `${(reservedCard ? 'bought a reserved card' : 'bought a card')}`,
+                cardPoints: cardPoints
+            });
             setGame(data.game);
             setIsCardSelected(false);
             setCardId(0);
@@ -32,6 +43,7 @@ const BuyCardBtn = () => {
         }
     })
     const handleClick = () => {
+        
         mutation.mutate(cardId);
     }
 

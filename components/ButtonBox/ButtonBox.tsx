@@ -3,7 +3,7 @@
 import styles from './ButtonBox.module.css';
 import { useGamesStore } from '@/stores/gameStore';
 import BuyCardBtn from '../BuyCardBtn/BuyCardBtn';
-import ReserveBtn from '../ReserveCard.Btn/ReserveCardBtn';
+import ReserveBtn from '../ReserveCardBtn/ReserveCardBtn';
 
 const ButtonBox = () => {
 return (

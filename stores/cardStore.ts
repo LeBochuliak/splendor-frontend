@@ -4,12 +4,14 @@ import type { Card } from '@/types/card'
 interface CardStore {
     card: Card | null;
     cardId: number;
+    cardPoints: number;
     isCardSelected: boolean;
     isTierSelected: boolean;
     levelSelected: string;
 
     setCard: (card: Card) => void;
     setCardId: (cardId: number) => void;
+    setCardPoints: (points: number) => void;
     setIsCardSelected: (arg: boolean) => void;
     setLevelSelected: (level: string) => void;
     setIsTierSelected: (arg: boolean) => void;
@@ -19,6 +21,7 @@ interface CardStore {
 export const useCardStore = create<CardStore>()((set) => ({
   card: null,
   cardId: 0,
+  cardPoints: 0,
   isCardSelected: false,
   isTierSelected: false,
   levelSelected: '',
@@ -26,6 +29,8 @@ export const useCardStore = create<CardStore>()((set) => ({
   setCard: (card) => set({ card }),
 
   setCardId: (cardId) => set({ cardId }),
+
+  setCardPoints: (cardPoints) => set({ cardPoints }),
 
   setIsCardSelected: (isSelected) => set({ isCardSelected: isSelected }),
 

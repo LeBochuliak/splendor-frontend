@@ -3,6 +3,7 @@ import { useMutation } from '@tanstack/react-query';
 import type { Game } from '@/types/game';
 import { useGamesStore } from '@/stores/gameStore';
 import { useCardStore } from '@/stores/cardStore'
+import { useActionStore } from '@/stores/actionStore';
 
 const ReserveBtn = () => {
     const { game } = useGamesStore();
@@ -14,6 +15,10 @@ const ReserveBtn = () => {
     const setLevelSelected = useCardStore((state) => state.setLevelSelected);
     const setIsTierSelected = useCardStore((state) => state.setIsTierSelected);
     const setCardId = useCardStore((state) => state.setCardId);
+    const addAction = useActionStore(state => state.addAction);
+
+
+    const player = game?.players.find((player) => player.id === game.currentPlayerId);
     
     const mutation = useMutation({
         mutationFn: async ({ cardId, level }: { cardId?: number; level?: string }) => {
@@ -29,6 +34,12 @@ const ReserveBtn = () => {
             throw new Error('Either cardId or level must be provided');
         },
         onSuccess: (data) => {
+            addAction({
+                id: crypto.randomUUID(),
+                playerName: player?.name || 'Player',
+                action: `${(isTierSelected ? `reserved card from deck` : 'reserved card')}`,
+                cardPoints: 0
+            });
             setGame(data);
             setIsTierSelected(false);
             setIsCardSelected(false);
@@ -40,7 +51,6 @@ const ReserveBtn = () => {
         }
     })
     const handleClick = () => {
-        console.log(levelSelected);
         
         mutation.mutate({cardId, level: levelSelected});
     }

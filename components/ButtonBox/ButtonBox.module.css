@@ -6,7 +6,6 @@
     width: 292px;
     height: 284px;
     background: var(--container);
-    margin-bottom: 14px;
 }
 .titleTurn {
     font-family: var(--font-cormorant-sans);
