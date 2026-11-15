@@ -35,7 +35,7 @@ const DevelopmentCards = () => {
         const cardIdTarget = Number(e.currentTarget.dataset.id);
         const cardPoints = Number(e.currentTarget.dataset.points);
         setCardPoints(cardPoints);
-
+        
         if (isTierSelected) {
             setIsTierSelected(false);
             setLevelSelected('');
@@ -44,6 +44,7 @@ const DevelopmentCards = () => {
         if (isCardSelected && cardId === cardIdTarget) {
             setIsCardSelected(false);
             setCardId(0);
+            setCardPoints(0);
             return;
         }
 
@@ -58,6 +59,7 @@ const DevelopmentCards = () => {
         if (isCardSelected) {
             setIsCardSelected(false);
             setCardId(0);
+            setCardPoints(0);
         }
 
         if (isTierSelected && level === levelSelected) {
@@ -135,7 +137,7 @@ const DevelopmentCards = () => {
                             game.cards.level2.board.map((card)=> {
                                 return <li key={card.id} className={`${styles.card} ${(cardId === card.id) && styles.selectedCard}`} style={{
                                     backgroundImage: `url("/cards/${card.id}.jpg")`}}>
-                                        <button className={styles.cardBtn} onClick={handleClick} type='button' data-id={card.id}>
+                                        <button className={styles.cardBtn} onClick={handleClick} type='button' data-id={card.id} data-points={card.points}>
                                         <p className={styles.cardsPoints}>
                                             <svg width='13' height='13'><use href='sprite.svg#icon-crown'/></svg>{card.points}</p>
                                         <div className={styles.cardsBonus}>
@@ -181,7 +183,7 @@ const DevelopmentCards = () => {
                             game.cards.level1.board.map((card)=> {
                                 return <li key={card.id} className={`${styles.card} ${styles.lastLevelCard} ${(cardId === card.id) && styles.selectedCardLastLevel}`} style={{
                                     backgroundImage: `url("/cards/${card.id}.jpg")`}}>
-                                        <button className={styles.cardBtn} onClick={handleClick} type='button' data-id={card.id}>
+                                        <button className={styles.cardBtn} onClick={handleClick} type='button' data-id={card.id} data-points={card.points}>
                                         <p className={styles.cardsPoints}>
                                             <svg width='13' height='13'><use href='sprite.svg#icon-crown'/></svg>{card.points}</p>
                                         <div className={styles.cardsBonus}>

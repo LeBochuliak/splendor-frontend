@@ -62,8 +62,17 @@
 .prestigeWrapper {
     margin-top: 12px;
     margin: 12px 12px 0 auto;
+    position: relative;
 }
-
+.prestigeWrapper svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.prestigeWrapper p{
+    margin-top: 8px;
+    margin-right: 4px;
+}
 .emptyBox {
     border: 1px solid #66563b;
     border-radius: 10px;

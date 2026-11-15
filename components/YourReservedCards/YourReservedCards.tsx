@@ -60,7 +60,7 @@ const YourReservedCards = () => {
                             <p className={styles.cardsPoints}><svg width='11' height='11'><use href='sprite.svg#icon-crown'/></svg>{card.points}</p>
 
                              <div className={styles.cardsBonus}>
-                                <svg width="19" height="19">
+                                <svg width="19" height="19" className={`gem--${card.resource}`}>
                                     <use href="/sprite.svg#icon-Gemstone" />
                                 </svg>
                             </div>

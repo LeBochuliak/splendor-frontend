@@ -45,7 +45,7 @@ export default function GameTable() {
       </div>
     </div>
     {((player?.totalTokens ?? 0) > 10) && <Modal onClose={()=> setIsModalOpened(false)}><ReturnTokens/></Modal>}
-    {game?.status === 'finished' && game.winner && <Modal onClose={()=> setIsModalOpened(false)}><Winner winner={game.winner} points={game.winner.points}/></Modal>}
+    {game?.finalRound && game?.winner && <Modal onClose={()=> setIsModalOpened(false)}><Winner winner={game.winner} points={game.winner.points}/></Modal>}
     </main>
   );
 }

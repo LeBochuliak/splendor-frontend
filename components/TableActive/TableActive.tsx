@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import styles from './TableActive.module.css'
 import { useActionStore } from '@/stores/actionStore'
+import { useCardStore } from '@/stores/cardStore';
 
 const TableActive = () => {
     const history = useActionStore(state => state.history);
@@ -11,6 +12,8 @@ const TableActive = () => {
     useEffect(() => {
         resetActionStore();
     }, [resetActionStore])
+    
+    
 
     return (
         <div className={styles.activityContainer}>

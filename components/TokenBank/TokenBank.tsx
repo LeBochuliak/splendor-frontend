@@ -9,7 +9,6 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios'
 import type { Game } from '@/types/game';
 import { useActionStore } from '@/stores/actionStore';
-import { useModalStore } from '@/stores/modalStore';
 
 const TokenBank = () => {
   const { game } = useGamesStore();
@@ -23,14 +22,19 @@ const TokenBank = () => {
   const resetSelectedTokens = useSelectedTokensStore((state) => state.resetSelectedTokens);
   const setGame = useGamesStore((state) => state.setGame);
   const addAction = useActionStore(state => state.addAction);
-  const { isModalOpened } = useModalStore();
-  const setIsModalOpened = useModalStore((state) => state.setIsModalOpened);
 
   useEffect(() => {
     resetSelectedTokens();
   }, [resetSelectedTokens]);
 
   const player = game?.players.find((player) => player.id === game.currentPlayerId);
+
+  const gameTokens = game?.tokens || {} as { Token: number }
+
+  const totalTokensInGame = Object.values(gameTokens).reduce(
+      (acc, value) => acc + value,
+      0
+    );
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const color = e.currentTarget.dataset.color as Token;
@@ -170,6 +174,10 @@ const TokenBank = () => {
 
     })
     const handleConfirm = () => {
+      if (totalTokensInGame < 3) {
+        mutation.mutate(selectedColorsArray);
+        resetSelectedTokens();
+      } 
       if ((selectedColorsDoubled.length > 0  && selectedColorsArray.length === 2) || (selectedColorsArray.length === 3)) {
         mutation.mutate(selectedColorsArray);
         resetSelectedTokens();

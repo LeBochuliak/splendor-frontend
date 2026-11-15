@@ -17,6 +17,7 @@ const BuyCardBtn = () => {
 
     const player = game?.players.find((player) => player.id === game.currentPlayerId);
     const reservedCard = player?.reservedCards.find((card) => card.id === cardId);
+    const playersNobles = player?.nobles || [];
 
     const mutation = useMutation({
         mutationFn: async (cardId: number) => {
@@ -34,6 +35,14 @@ const BuyCardBtn = () => {
                 cardPoints: cardPoints
             });
             setGame(data.game);
+            if ((player?.nobles.length ?? 0) > playersNobles.length) {
+                addAction({
+                id: crypto.randomUUID(),
+                playerName: player?.name || 'Player',
+                action: 'took noble',
+                cardPoints: player?.nobles.at(-1)?.points ?? 0
+            });
+            }
             setIsCardSelected(false);
             setCardId(0);
 

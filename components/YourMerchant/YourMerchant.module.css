@@ -31,10 +31,15 @@
     font-size: 10px;
     color: var(--text-secondary);
 }
+.yourPoints svg {
+    position: absolute;
+}
 .yourPoints p {
     font-family: var(--font-cormorant-sans);
     font-size: 30px;
     color: var(--text-accent);
+    position: relative;
+    margin-top: 6px;
 }
 
 .yourPrestige {

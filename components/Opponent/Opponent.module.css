@@ -26,12 +26,17 @@
 .points {
     margin-left: auto;
     margin-bottom: 12px;
+    position: relative;
+}
+.points svg{
+    position: absolute;
 }
 .points p {
     font-family: var(--font-cormorant-sans);
     font-size: 29px;
     line-height: 100%;
     color: var(--text-accent);
+    margin-top: 8px;
 }
 .opponentTokens {
     display: flex;

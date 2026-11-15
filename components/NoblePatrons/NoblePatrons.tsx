@@ -4,6 +4,7 @@ import styles from './NoblePatrons.module.css';
 import Image from 'next/image';
 import { useGamesStore } from '@/stores/gameStore';
 import { noblesInfo } from '@/public/nobles/nobles';
+import { useActionStore } from '@/stores/actionStore'
 
 const NoblePatrons = () => {
     const { game } = useGamesStore();
@@ -14,7 +15,7 @@ const NoblePatrons = () => {
       <h2 className="sectionLabel">Noble Patrons</h2>
       <p className={`textInstruction ${styles.noblesText}`}>Earn their favor with permanent bonuses</p>
       <ul className={styles.noblesList}>
-        {(game) ? 
+        {(game) && 
             game.nobles.map((noble)=> {
                 const info = noblesInfo.find((patron) => patron.id === noble.id)
                 return <li key={noble.id} className={styles.nobleCard}>
@@ -39,15 +40,11 @@ const NoblePatrons = () => {
                     </div>
             
                 </li> 
-            })
-            :
-            (
-                Array.from({ length: emptyNoblesBoxes }).map((_, index) => (
+            },
+            Array.from({ length: emptyNoblesBoxes }).map((_, index) => (
                     <li key={index} className={styles.emptyBox}></li>
                 ))
-            )}
-            
-
+        )}
       </ul>
     </div>
   );
