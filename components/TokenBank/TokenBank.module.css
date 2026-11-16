@@ -62,12 +62,38 @@
     align-items: center;
     justify-content: center;
     margin-top: 8px;
+
+    transition: 0.25s ease;
+}
+.confirmBtn:hover {
+    background: #7a6849;
+    color: #fff;
+    box-shadow: 0 3px 10px rgba(102, 86, 59, 0.2);
+}
+
+.confirmBtn:active {
+    transform: scale(0.98);
+    box-shadow: none;
+}
+
+.confirmBtn:focus-visible {
+    outline: 2px solid #a99a7b;
+    outline-offset: 3px;
 }
 .clearBtn {
     font-size: 10px;
     color: var(--text-secondary);
     display: block;
     margin: 12px auto 0;
+
+    transition: 0.25s ease;
+}
+.clearBtn:hover {
+    color: #e8d6b8;
+}
+
+.clearBtn:active {
+    opacity: 0.6;
 }
 .goldText {
   font-size: 10px;

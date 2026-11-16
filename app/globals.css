@@ -221,10 +221,26 @@ button {
     align-items: center;
     gap: 8px;
     margin-bottom: 10px;
+
+    transition: 0.25s ease;
 }
 .actionBtnActive {
    border: 2px solid #71868d;
 }
 .actionReserveBtnActive {
   border: 2px solid #71868d;
+}
+.actionBtn:hover {
+    background: #29383c;
+    border-color: #526367;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+.actionBtn:active {
+    transform: scale(0.98);
+    background: #151f22;
+    box-shadow: none;
+}
+.actionBtn:focus-visible {
+    outline: 2px solid #718589;
+    outline-offset: 3px;
 }

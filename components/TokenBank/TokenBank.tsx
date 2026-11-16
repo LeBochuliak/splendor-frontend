@@ -9,6 +9,7 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios'
 import type { Game } from '@/types/game';
 import { useActionStore } from '@/stores/actionStore';
+import { useCardStore } from '@/stores/cardStore';
 
 const TokenBank = () => {
   const { game } = useGamesStore();
@@ -22,6 +23,7 @@ const TokenBank = () => {
   const resetSelectedTokens = useSelectedTokensStore((state) => state.resetSelectedTokens);
   const setGame = useGamesStore((state) => state.setGame);
   const addAction = useActionStore(state => state.addAction);
+  const resetCardSelected = useCardStore((state) => state.resetCardSelected);
 
   useEffect(() => {
     resetSelectedTokens();
@@ -43,6 +45,8 @@ const TokenBank = () => {
       (acc, value) => acc + value,
       0
     );
+
+    resetCardSelected();
     
     if (!color || !game) return;
 
@@ -142,13 +146,6 @@ const TokenBank = () => {
         },
         onMutate: async () => {
           if (!game) return;
-
-          addAction({
-                id: crypto.randomUUID(),
-                playerName: player?.name || 'Player',
-                action: `took gems: ${selectedColorsArray.join(', ')}`,
-                cardPoints: 0
-            });
             
           const previousGameTokens = {
                     white: game.tokens.white + newUpdateGame.tokens.white,
@@ -162,6 +159,12 @@ const TokenBank = () => {
           
         },
         onSuccess: (data) => {
+          addAction({
+                id: crypto.randomUUID(),
+                playerName: player?.name || 'Player',
+                action: `took gems: ${selectedColorsArray.join(', ')}`,
+                cardPoints: 0
+            });
             setGame(data.game);
         },
         onError: (error, variables, context) => {
@@ -174,7 +177,7 @@ const TokenBank = () => {
 
     })
     const handleConfirm = () => {
-      if (totalTokensInGame < 3) {
+      if ((totalTokensInGame - (game?.tokens.gold ?? 0)) < 3) {
         mutation.mutate(selectedColorsArray);
         resetSelectedTokens();
       } 

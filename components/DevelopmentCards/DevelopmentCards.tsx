@@ -4,6 +4,7 @@ import styles from './DevelopmentCards.module.css';
 import { useGamesStore } from '@/stores/gameStore';
 import { useCardStore } from '@/stores/cardStore';
 import { useEffect } from 'react';
+import { useSelectedTokensStore } from '@/stores/selectedTokensStore'
 
 const DevelopmentCards = () => {
     const { game } = useGamesStore();
@@ -16,6 +17,7 @@ const DevelopmentCards = () => {
     const setLevelSelected = useCardStore((state) => state.setLevelSelected);
     const setIsTierSelected = useCardStore((state) => state.setIsTierSelected);
     const setCardPoints = useCardStore((state) => state.setCardPoints);
+    const resetSelectedTokens = useSelectedTokensStore((state) => state.resetSelectedTokens);
 
     const emptyLevel3 = 4 - (game?.cards.level3.board.length ?? 0);
     const emptyLevel2 = 4 - (game?.cards.level2.board.length ?? 0);
@@ -35,6 +37,7 @@ const DevelopmentCards = () => {
         const cardIdTarget = Number(e.currentTarget.dataset.id);
         const cardPoints = Number(e.currentTarget.dataset.points);
         setCardPoints(cardPoints);
+        resetSelectedTokens();
         
         if (isTierSelected) {
             setIsTierSelected(false);
