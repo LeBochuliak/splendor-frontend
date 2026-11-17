@@ -48,7 +48,11 @@ const BuyCardBtn = () => {
 
         },
         onError: (error) => {
-            console.error("Failed to buy the card", error);
+            if (axios.isAxiosError(error)) {
+                const message = error.response?.data?.message;
+
+                console.log(message);
+            }
         }
     })
     const handleClick = () => {

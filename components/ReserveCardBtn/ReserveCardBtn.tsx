@@ -47,7 +47,11 @@ const ReserveBtn = () => {
             setCardId(0);
         },
         onError: (error) => {
-            console.error("Failed to reserve the card", error);
+            if (axios.isAxiosError(error)) {
+                const message = error.response?.data?.message;
+
+                console.log(message);
+            }
         }
     })
     const handleClick = () => {

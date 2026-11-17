@@ -19,7 +19,7 @@ const TokenBank = () => {
   const updateNewUpdateGame = useSelectedTokensStore(
   (state) => state.updateNewUpdateGame
   );
-  const { selectedTokens, isActive, newUpdateGame } = useSelectedTokensStore();
+  const { selectedTokens, isActive, newUpdateGame, selectedTokensPrev } = useSelectedTokensStore();
   const resetSelectedTokens = useSelectedTokensStore((state) => state.resetSelectedTokens);
   const setGame = useGamesStore((state) => state.setGame);
   const addAction = useActionStore(state => state.addAction);
@@ -33,10 +33,13 @@ const TokenBank = () => {
 
   const gameTokens = game?.tokens || {} as { Token: number }
 
-  const totalTokensInGame = Object.values(gameTokens).reduce(
-      (acc, value) => acc + value,
-      0
-    );
+  const totalAvailableGems = Object.entries(gameTokens)
+  .filter(([color]) => color !== 'gold')
+  .reduce(
+    (acc, [color, value]) =>
+      acc + value + newUpdateGame.tokens[color as Token],
+    0
+  );
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const color = e.currentTarget.dataset.color as Token;
@@ -127,6 +130,10 @@ const TokenBank = () => {
   const selectedColorsArray = selectedColors.flatMap(([color, value]) =>
         value > 1 ? [color, color] : [color]);
 
+  const selectedColorPrev = Object.entries(selectedTokensPrev)
+                                 .filter(([color, value]) => value > 0)
+                                 .flatMap(([color, value]) =>
+                                    value > 1 ? [color, color] : [color])
   
   const textDescription = selectedColorsDoubled[0]
         ? 'Confirm your selection'
@@ -155,20 +162,25 @@ const TokenBank = () => {
                     black: game.tokens.black + newUpdateGame.tokens.black,
                     gold: game.tokens.gold + newUpdateGame.tokens.gold,
           }
+          
           return {previousGameTokens};
           
         },
         onSuccess: (data) => {
-          addAction({
+            addAction({
                 id: crypto.randomUUID(),
                 playerName: player?.name || 'Player',
-                action: `took gems: ${selectedColorsArray.join(', ')}`,
+                action: `took gems: ${selectedColorPrev.join(', ')}`,
                 cardPoints: 0
             });
             setGame(data.game);
         },
         onError: (error, variables, context) => {
-            console.error("Failed to take tokens", error);
+            if (axios.isAxiosError(error)) {
+              const message = error.response?.data?.message;
+
+              console.log(message);
+            }
             if (context ) {
               updateGame({tokens: context.previousGameTokens})
             }
@@ -177,14 +189,18 @@ const TokenBank = () => {
 
     })
     const handleConfirm = () => {
-      if ((totalTokensInGame - (game?.tokens.gold ?? 0)) < 3) {
+      const hasFewTokens = totalAvailableGems < 3;
+
+      const hasValidSelection =
+        (selectedColorsDoubled.length > 0 &&
+          selectedColorsArray.length === 2) ||
+          selectedColorsArray.length === 3;
+
+      if (hasFewTokens || hasValidSelection) {
         mutation.mutate(selectedColorsArray);
+        
         resetSelectedTokens();
-      } 
-      if ((selectedColorsDoubled.length > 0  && selectedColorsArray.length === 2) || (selectedColorsArray.length === 3)) {
-        mutation.mutate(selectedColorsArray);
-        resetSelectedTokens();
-      } 
+      }
     };
     
     const handleClear = () =>{

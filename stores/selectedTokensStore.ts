@@ -4,6 +4,7 @@ import type { Token } from '@/types/tokens';
 interface SelectedTokensStore {
   selectedTokens: Record<Token, number>;
   isActive: Record<Token, boolean>;
+  selectedTokensPrev: Record<Token, number>;
 
   newUpdateGame: {
     status: boolean;
@@ -18,6 +19,7 @@ interface SelectedTokensStore {
       tokens: Partial<Record<Token, number>>;
     }>
   ) => void;
+  updateSelectedTokensPrev: (updates: Partial<Record<Token, number>>) => void;
 
   resetSelectedTokens: () => void;
 }
@@ -31,7 +33,16 @@ interface SelectedTokensStore {
       black: 0,
       gold: 0,
   },
- 
+
+   selectedTokensPrev: {
+      white: 0,
+      blue: 0,
+      green: 0,
+      red: 0,
+      black: 0,
+      gold: 0,
+  },
+
   isActive: { 
     white: false, 
     blue: false, 
@@ -60,6 +71,14 @@ interface SelectedTokensStore {
       },
     })),
 
+    updateSelectedTokensPrev: (updates) =>
+      set((state) => ({
+        selectedTokensPrev: {
+        ...state.selectedTokensPrev,
+        ...updates,
+      },
+    })),
+
     updateIsActive: (updates) =>
       set((state) => ({
         isActive: {
@@ -80,7 +99,12 @@ interface SelectedTokensStore {
       },
     })),
 
-    resetSelectedTokens: () => set({
+    resetSelectedTokens: () =>
+      set((state) => ({
+        selectedTokensPrev: {
+        ...state.selectedTokens,
+      },
+
       selectedTokens: {
         white: 0,
         blue: 0,
@@ -89,6 +113,7 @@ interface SelectedTokensStore {
         black: 0,
         gold: 0,
       },
+
       isActive: {
         white: false,
         blue: false,
@@ -97,6 +122,7 @@ interface SelectedTokensStore {
         black: false,
         gold: false,
       },
+
       newUpdateGame: {
         status: false,
         tokens: {
@@ -108,5 +134,5 @@ interface SelectedTokensStore {
           gold: 0,
         },
       },
-    }),
- }))
+  })
+ )}))

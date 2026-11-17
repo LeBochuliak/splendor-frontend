@@ -56,7 +56,11 @@ const ReturnTokens = () => {
 
         },
         onError: (error) => {
-            console.error("Failed to take tokens", error);
+            if (axios.isAxiosError(error)) {
+                const message = error.response?.data?.message;
+
+                console.log(message);
+            }
             setSelectedTokens([]);
           }
 
