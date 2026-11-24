@@ -3,7 +3,6 @@
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    
 }
 .noblesText {
     margin-left: auto;
@@ -12,6 +11,8 @@
 .noblesList {
     display: flex;
     gap: 14px;
+    width: 100%;
+    height: 98px;
 }
 .nobleCard {
     border: 1px solid #66563b;
@@ -67,7 +68,7 @@
 .prestigeWrapper svg {
     position: absolute;
     top: 0;
-    right: 0;
+    right: 2px;
 }
 .prestigeWrapper p{
     margin-top: 8px;

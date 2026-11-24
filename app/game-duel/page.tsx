@@ -15,12 +15,41 @@ import Modal from '@/components/Modal/Modal';
 import Winner from '@/components/Winner/Winner'
 import { useModalStore } from '@/stores/modalStore';
 import { useGamesStore } from '@/stores/gameStore';
+import { useComputerStore } from '@/stores/computerStore';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+
+
 
 export default function GameTable() {
   const setIsModalOpened = useModalStore((state) => state.setIsModalOpened);
-  const { game } = useGamesStore();
+  const { isComputer} = useComputerStore();
+  const setComputerPlayerId = useComputerStore((state) => state.setComputerPlayerId);
+  const game = useGamesStore((state) => state.game);
+  const [hydrated, setHydrated] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const hydrate = async () => {
+      await useGamesStore.persist.rehydrate();
+      setHydrated(true);
+    };
+
+    hydrate();
+  }, []);
+
+  useEffect(() => {
+    if (hydrated && game?.players.length !== 2) {
+        router.replace('/');
+    }
+  }, [hydrated, game, router]);
+
+  if (!hydrated || game?.players.length !== 2) {
+    return null;
+  }
 
   const player = game?.players.find((player) => player.id === game.currentPlayerId);
+
 
   return (
     <main>

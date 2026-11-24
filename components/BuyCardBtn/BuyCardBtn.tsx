@@ -2,8 +2,9 @@ import axios from 'axios'
 import { useMutation } from '@tanstack/react-query';
 import type { Game } from '@/types/game';
 import { useGamesStore } from '@/stores/gameStore';
-import { useCardStore } from '@/stores/cardStore'
-import { useActionStore } from '@/stores/actionStore'
+import { useCardStore } from '@/stores/cardStore';
+import { useActionStore } from '@/stores/actionStore';
+import { useSelectedTokensStore } from '@/stores/selectedTokensStore'
 
 const BuyCardBtn = () => {
     const { game } = useGamesStore();
@@ -13,11 +14,13 @@ const BuyCardBtn = () => {
     const setIsCardSelected = useCardStore((state) => state.setIsCardSelected);
     const setCardId = useCardStore((state) => state.setCardId);
     const addAction = useActionStore(state => state.addAction);
+    const isTierSelected = useCardStore((state) => state.isTierSelected);
+    const { isActive } = useSelectedTokensStore();
 
-
+    const isTokenSelected = Object.entries(isActive).some(([color, value]) => value === true);
     const player = game?.players.find((player) => player.id === game.currentPlayerId);
     const reservedCard = player?.reservedCards.find((card) => card.id === cardId);
-    const playersNobles = player?.nobles || [];
+    const previousNobles = player?.nobles ?? [];
 
     const mutation = useMutation({
         mutationFn: async (cardId: number) => {
@@ -28,6 +31,12 @@ const BuyCardBtn = () => {
             }
         },
         onSuccess: (data) => {
+            const updatedPlayer = data.game.players.find(
+                (p) => p.id !== data.game.currentPlayerId
+            );
+
+            const updatedNobles = updatedPlayer?.nobles ?? [];
+            
             addAction({
                 id: crypto.randomUUID(),
                 playerName: player?.name || 'Player',
@@ -35,17 +44,18 @@ const BuyCardBtn = () => {
                 cardPoints: cardPoints
             });
             setGame(data.game);
-            if ((player?.nobles.length ?? 0) > playersNobles.length) {
+            
+            if (updatedNobles.length > previousNobles.length) {
                 addAction({
                 id: crypto.randomUUID(),
                 playerName: player?.name || 'Player',
                 action: 'took noble',
                 cardPoints: player?.nobles.at(-1)?.points ?? 0
-            });
+                });
             }
             setIsCardSelected(false);
             setCardId(0);
-
+            
         },
         onError: (error) => {
             if (axios.isAxiosError(error)) {
@@ -56,12 +66,11 @@ const BuyCardBtn = () => {
         }
     })
     const handleClick = () => {
-        
         mutation.mutate(cardId);
     }
 
     return (
-    <button className={`actionBtn ${isCardSelected && 'actionBtnActive'}`} type='button' onClick={handleClick}>
+    <button className={`actionBtn ${isCardSelected && 'actionBtnActive'} `} type='button' onClick={handleClick} disabled={isTierSelected || isTokenSelected}>
         <svg width='16' height='16'>
             <use href='sprite.svg#icon-shopping-bag'/>
         </svg>

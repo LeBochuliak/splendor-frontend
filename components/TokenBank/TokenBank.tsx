@@ -24,6 +24,8 @@ const TokenBank = () => {
   const setGame = useGamesStore((state) => state.setGame);
   const addAction = useActionStore(state => state.addAction);
   const resetCardSelected = useCardStore((state) => state.resetCardSelected);
+  const isCardSelected = useCardStore((state) => state.isCardSelected);
+  const isTierSelected = useCardStore((state) => state.isTierSelected);
 
   useEffect(() => {
     resetSelectedTokens();
@@ -56,12 +58,15 @@ const TokenBank = () => {
     if (!isActive[color] && color && game.tokens[color] >= 1 && !hasTwoTokens && totalSelectedTokens < 3) {
       updateSelectedTokens({ [color]: selectedTokens[color] + 1});
       updateIsActive({ [color]: true});
-      updateGame({
+      if (totalAvailableGems > 1) {
+        updateGame({
         tokens: {
           ...game.tokens,
           [color]: game.tokens[color] - 1
         }
-      })
+        })
+      } 
+      
       updateNewUpdateGame({
         status: true,
         tokens: {
@@ -329,7 +334,7 @@ const TokenBank = () => {
         </li>
 
         <li className={styles.gemsWrapper}>
-          <svg width="50" height="50" className={`gem gem--gold ${styles.gem}`}>
+          <svg width="50" height="50" className={`gem gem--gold ${styles.gem} ${styles.gemGold}`}>
             <use href="sprite.svg#icon-Gem-token" />
           </svg>
           <p className={styles.amount}>{game ? game.tokens.gold : 0}</p>
@@ -343,7 +348,7 @@ const TokenBank = () => {
       </ul>
       <div className={styles.BtnWrapper}>
             <p className={styles.textMove}>{textDescription ? textDescription : 'Choose two or three more gems from the bank.'}</p>
-            <button type='button' className={styles.confirmBtn} onClick={handleConfirm}><svg width='13' height='13'><use href='sprite.svg#icon-check'/></svg>Confirm selection</button>
+            <button type='button' className={styles.confirmBtn} onClick={handleConfirm} disabled={isTierSelected || isCardSelected}><svg width='13' height='13'><use href='sprite.svg#icon-check'/></svg>Confirm selection</button>
             <button type='button' className={styles.clearBtn} onClick={handleClear}>Clear selection</button>
       </div>
     </div>

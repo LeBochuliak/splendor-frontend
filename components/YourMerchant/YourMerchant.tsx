@@ -17,6 +17,7 @@ const YourMerchant = () => {
                     <div className={styles.yourInfo}>
                         <p className={styles.youText}>You · {you?.name}</p>
                         <p className={styles.yourCardsAmount}>{`${you?.developmentCards.length ?? 0} developments`}</p>
+                        <p className={styles.yourCardsAmount}>{`${you?.nobles.length ?? 0} patrons`}</p>
                     </div>
                     <div className={styles.yourPoints}>
                         <svg width='14' height='14'><use href='sprite.svg#icon-crown'/></svg>

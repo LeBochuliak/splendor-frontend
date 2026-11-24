@@ -1,18 +1,26 @@
 'use client'
 import styles from './page.module.css';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios'
 import { useRouter } from 'next/navigation';
 import { useGamesStore } from '@/stores/gameStore';
-import type { Game } from "@/types/game"
+import type { Game } from "@/types/game";
+import { useComputerStore } from '@/stores/computerStore';
 
 export default function Home() {
   const [firstName, setFirstName] = useState("");
   const [secondName, setSecondName] = useState("");
+  const { isComputer } = useComputerStore();
   const { setGame } = useGamesStore();
+  const setIsComputer = useComputerStore((state) => state.setIsComputer)
 
   const router = useRouter();
+
+  useEffect(() => {
+    useGamesStore.getState().setGame(null);
+    useGamesStore.persist.clearStorage();
+  }, []);
 
   const mutation = useMutation({
     mutationFn: async (newPlayers: string[]) => {
@@ -32,7 +40,6 @@ export default function Home() {
 
     onSuccess: (data) => {
         setGame(data.game);
-        console.log(data);
         
         router.push('/game-duel');
     },
@@ -42,9 +49,9 @@ export default function Home() {
     },
 });
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const newPlayers = [firstName.trim(), secondName.trim()];
+    const newPlayers = [firstName.trim(), isComputer ? 'Computer' : secondName.trim()];
     
     mutation.mutate(newPlayers);
   }
@@ -59,7 +66,7 @@ export default function Home() {
               Gather your fellow merchants. A new pursuit of prestige awaits.
             </p>
           </div>
-          
+          <div className={styles.row}>
           <div className={styles.imageWrapper}>
             <p className={styles.textAccent}><svg width='16' height='16'><use href='sprite.svg#icon-Gemstone'/></svg>The art of the trade</p>
             <h1 className={styles.title}>From a handful of gems,<br />
@@ -87,18 +94,35 @@ export default function Home() {
                 required
               />
 
-              <label htmlFor="secondPlayerName">Second player name <span>*</span></label>
-              <input
-                id="secondPlayerName"
-                name="name"
-                type="text"
-                placeholder="Name"
-                value={secondName}
-                onChange={(e) => setSecondName(e.target.value)}
-                minLength={2}
-                maxLength={10}
-                required
-              />
+              <label className={styles.checkboxLabel}>
+                <input
+                  type="checkbox"
+                  checked={isComputer}
+                  onChange={(e) => setIsComputer(e.target.checked)}
+                  className={styles.checkbox}
+                />
+                  Play against computer
+              </label>
+
+              {!isComputer && (
+                <>
+                  <label htmlFor="secondPlayerName">
+                    Second player name <span>*</span>
+                  </label>
+
+                  <input
+                    id="secondPlayerName"
+                    name="name"
+                    type="text"
+                    placeholder="Name"
+                    value={secondName}
+                    onChange={(e) => setSecondName(e.target.value)}
+                    minLength={2}
+                    maxLength={10}
+                    required
+                  />
+                </>
+)}
 
               <p className='textInstruction'>The name other merchants will see. 2–10 characters.</p>
       
@@ -118,6 +142,7 @@ export default function Home() {
               </div>
               {mutation.isError && <p className={styles.error}>Something went wrong. Try again.</p>} 
             </form>
+          </div>
           </div>
         </div>
       </main>

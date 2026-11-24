@@ -4,7 +4,6 @@ import styles from './NoblePatrons.module.css';
 import Image from 'next/image';
 import { useGamesStore } from '@/stores/gameStore';
 import { noblesInfo } from '@/public/nobles/nobles';
-import { useActionStore } from '@/stores/actionStore'
 
 const NoblePatrons = () => {
     const { game } = useGamesStore();
@@ -18,6 +17,7 @@ const NoblePatrons = () => {
         {(game) && 
             game.nobles.map((noble)=> {
                 const info = noblesInfo.find((patron) => patron.id === noble.id)
+
                 return <li key={noble.id} className={styles.nobleCard}>
                     <Image src={`/nobles/${noble.id}.jpg`} width={76} height={96} alt='Patron portrait'className={styles.portrait}/>
             

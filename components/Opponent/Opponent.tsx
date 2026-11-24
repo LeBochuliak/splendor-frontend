@@ -14,7 +14,7 @@ const Opponent = () => {
                 <Image src='/opponentPortrait.png' width={44} height={44} alt='Portrait'/>
                 <div className={styles.opponentInfo}>
                     <p className={styles.name}>{opponent?.name}</p>
-                    <p className={styles.cards}>{`Opponent · ${opponent?.developmentCards.length ?? 0} developments`}</p>            
+                    <p className={styles.cards}>{`${opponent?.developmentCards.length ?? 0} developments · ${opponent?.nobles.length ?? 0} patrons`}</p>            
                 </div>
                 <div className={styles.points}>
                     <svg width='15' height='15'><use href='sprite.svg#icon-crown'/></svg>

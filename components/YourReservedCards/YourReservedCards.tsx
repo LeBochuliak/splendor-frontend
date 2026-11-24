@@ -3,6 +3,7 @@
 import styles from './YourReservedCards.module.css'
 import { useGamesStore } from '@/stores/gameStore';
 import { useCardStore } from '@/stores/cardStore';
+import canBuy from '@/utils/canBuyFunction'
 
 const YourReservedCards = () => {
     const { game } = useGamesStore();
@@ -10,7 +11,6 @@ const YourReservedCards = () => {
     const { cardId } = useCardStore();
     const isCardSelected = useCardStore((state) => state.isCardSelected);
     const setIsCardSelected = useCardStore((state) => state.setIsCardSelected);
-    const resetCardSelected = useCardStore((state) => state.resetCardSelected);
     const isTierSelected = useCardStore((state) => state.isTierSelected);
     const setLevelSelected = useCardStore((state) => state.setLevelSelected);
     const setIsTierSelected = useCardStore((state) => state.setIsTierSelected);
@@ -51,10 +51,11 @@ const YourReservedCards = () => {
                         {you.reservedCards.map(card => (
                             <li
                                 key={card.id}
-                                className={`${styles.slot} ${(cardId === card.id) && styles.selectedCard}`}
+                                className={`${styles.slot} ${(cardId === card.id) && styles.selectedCard} ${canBuy({game, cardPrice: card.price}) ? styles.availableCard : ''}`}
                                 style={{
                                     backgroundImage: `url("/cards/${card.id}.jpg")`
                                 }}
+                                
                             >
                                 <button type='button' onClick={handleClick} className={styles.cardBtn} data-id={card.id}>
                             <p className={styles.cardsPoints}><svg width='11' height='11'><use href='sprite.svg#icon-crown'/></svg>{card.points}</p>

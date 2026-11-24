@@ -4,6 +4,7 @@ import type { Game } from '@/types/game';
 import { useGamesStore } from '@/stores/gameStore';
 import { useCardStore } from '@/stores/cardStore'
 import { useActionStore } from '@/stores/actionStore';
+import { useSelectedTokensStore } from '@/stores/selectedTokensStore'
 
 const ReserveBtn = () => {
     const { game } = useGamesStore();
@@ -16,8 +17,10 @@ const ReserveBtn = () => {
     const setIsTierSelected = useCardStore((state) => state.setIsTierSelected);
     const setCardId = useCardStore((state) => state.setCardId);
     const addAction = useActionStore(state => state.addAction);
+        const { isActive } = useSelectedTokensStore();
 
 
+    const isTokenSelected = Object.entries(isActive).some(([color, value]) => value === true);
     const player = game?.players.find((player) => player.id === game.currentPlayerId);
     
     const mutation = useMutation({
@@ -61,7 +64,7 @@ const ReserveBtn = () => {
 
 
     return (
-    <button className={`actionBtn ${isTierSelected && 'actionReserveBtnActive'} ${isCardSelected && 'actionBtnActive'}`} type='button' onClick={handleClick}>
+    <button className={`actionBtn ${isTierSelected && 'actionReserveBtnActive'} ${isCardSelected && 'actionBtnActive'}`} type='button' onClick={handleClick} disabled={isTokenSelected}>
         <svg width='16' height='16'>
             <use href='sprite.svg#icon-bookmark'/>
         </svg>

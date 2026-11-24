@@ -4,6 +4,7 @@ import type { Noble } from './noble'
 export interface Player {
     id: string,
     name: string,
+    type?: PlayerType;
     points: number,
     resources: {
       white: number,
@@ -25,3 +26,5 @@ export interface Player {
     developmentCards: Card[],
     nobles: Noble[],
   };
+
+export type PlayerType = 'human' | 'computer';

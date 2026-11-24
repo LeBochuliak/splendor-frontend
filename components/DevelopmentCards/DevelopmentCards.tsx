@@ -4,7 +4,8 @@ import styles from './DevelopmentCards.module.css';
 import { useGamesStore } from '@/stores/gameStore';
 import { useCardStore } from '@/stores/cardStore';
 import { useEffect } from 'react';
-import { useSelectedTokensStore } from '@/stores/selectedTokensStore'
+import { useSelectedTokensStore } from '@/stores/selectedTokensStore';
+import canBuy from '@/utils/canBuyFunction'
 
 const DevelopmentCards = () => {
     const { game } = useGamesStore();
@@ -27,11 +28,6 @@ const DevelopmentCards = () => {
         resetCardSelected()
     }, [resetCardSelected]);
 
-    const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (event.target === event.currentTarget) {
-        resetCardSelected();
-    }
-    };
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         const cardIdTarget = Number(e.currentTarget.dataset.id);
@@ -75,8 +71,10 @@ const DevelopmentCards = () => {
         setIsTierSelected(true);
     }
 
+    
+
     return (
-        <div className={styles.cardsContainer} onClick={handleBackdropClick}>
+        <div className={styles.cardsContainer}>
             <h2 className='sectionLabel'>Development cards</h2>
             <p className={`textInstruction ${styles.InstText}`}>Prestige at left · Gem bonus at right · Cost below</p>
             <ul className={styles.cards}>
@@ -91,7 +89,7 @@ const DevelopmentCards = () => {
                         </li>
                         {(game) ? 
                             game.cards.level3.board.map((card)=> {
-                                return <li key={card.id} className={`${styles.card} ${(cardId === card.id) && styles.selectedCard}`} style={{
+                                return <li key={card.id} className={`${styles.card} ${(cardId === card.id) && styles.selectedCard} ${canBuy({game, cardPrice: card.price}) ? styles.availableCard : ''}`} style={{
                                     backgroundImage: `url("/cards/${card.id}.jpg")`}}>
                                         <button className={styles.cardBtn} onClick={handleClick} type='button' data-id={card.id} data-points={card.points}>
                                         <p className={styles.cardsPoints}>
@@ -129,7 +127,7 @@ const DevelopmentCards = () => {
 
                  <li className={styles.cardsLevel}>
                     <ul className={styles.level}>
-                        <li className={`${styles.tier} ${(levelSelected === 'level2') && styles.selectedTier}`} >
+                        <li className={`${styles.tier} ${(levelSelected === 'level2') && styles.selectedTier} `} >
                             <button type='button' className={styles.tierBtn} data-level='level2' onClick={handleClickTier}> 
                             <p className={styles.tierLabel}>Tier</p>
                             <p className={styles.tierNumber}>II</p>
@@ -138,7 +136,7 @@ const DevelopmentCards = () => {
                         </li>
                         {(game) ? 
                             game.cards.level2.board.map((card)=> {
-                                return <li key={card.id} className={`${styles.card} ${(cardId === card.id) && styles.selectedCard}`} style={{
+                                return <li key={card.id} className={`${styles.card} ${(cardId === card.id) && styles.selectedCard} ${canBuy({game, cardPrice: card.price}) ? styles.availableCard : ''}`} style={{
                                     backgroundImage: `url("/cards/${card.id}.jpg")`}}>
                                         <button className={styles.cardBtn} onClick={handleClick} type='button' data-id={card.id} data-points={card.points}>
                                         <p className={styles.cardsPoints}>
@@ -184,7 +182,7 @@ const DevelopmentCards = () => {
                         </li>
                         {(game) ? 
                             game.cards.level1.board.map((card)=> {
-                                return <li key={card.id} className={`${styles.card} ${styles.lastLevelCard} ${(cardId === card.id) && styles.selectedCardLastLevel}`} style={{
+                                return <li key={card.id} className={`${styles.card} ${styles.lastLevelCard} ${(cardId === card.id) && styles.selectedCardLastLevel} ${canBuy({game, cardPrice: card.price}) ? styles.availableCard : ''}`} style={{
                                     backgroundImage: `url("/cards/${card.id}.jpg")`}}>
                                         <button className={styles.cardBtn} onClick={handleClick} type='button' data-id={card.id} data-points={card.points}>
                                         <p className={styles.cardsPoints}>

@@ -1,11 +1,11 @@
 .yourMerchantContainer {
-    padding: 24px 24px 28px 28px;
+    padding: 24px 24px 28px 0;
 }
 .merchantProfile {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    width: 249px;
+    width: 280px;
     height: 168px;
     border-right: 1px solid #344044;
     padding-right: 24px;
@@ -24,7 +24,7 @@
 .youText {
     font-family: var(--font-cormorant-sans);
     font-weight: 600;
-    font-size: 26px;
+    font-size: 22px;
     margin-bottom: 4px;
 }
 .yourCardsAmount {

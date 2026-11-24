@@ -34,6 +34,7 @@
 .gem {
     margin-right: 24px;
     margin-bottom: 3px;
+    border-radius: 50%;
 }
 .gemsWrapper:last-child {
     padding-bottom: 12px;
@@ -70,7 +71,12 @@
     color: #fff;
     box-shadow: 0 3px 10px rgba(102, 86, 59, 0.2);
 }
-
+.confirmBtn:disabled:hover {
+    background: #66563b;
+    color: #bbb199;
+    box-shadow: none;
+    cursor: auto;
+}
 .confirmBtn:active {
     transform: scale(0.98);
     box-shadow: none;
@@ -103,4 +109,10 @@
 }
 .confirmBtn svg {
     margin-right: 2px;
+}
+.gem:hover {
+    box-shadow: 0 5px 12px 0 rgba(185, 179, 150, 0.345);
+}
+.gemGold:hover {
+    box-shadow: none;
 }

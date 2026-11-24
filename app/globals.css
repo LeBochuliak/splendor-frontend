@@ -244,3 +244,9 @@ button {
     outline: 2px solid #718589;
     outline-offset: 3px;
 }
+.actionBtn:disabled:hover {
+    background: #1c272a;
+    border-color: #344044;
+    box-shadow: none;
+    cursor: auto;
+}
