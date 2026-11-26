@@ -50,7 +50,9 @@ const TokenBank = ({ action }: TokenBankProps) => {
       acc + value + newUpdateGame.tokens[color as Token],
     0
   );
-  const totalAvailableColors = Object.entries(gameTokens).filter(([color, value]) => value > 0); 
+  const totalAvailableColors = Object.entries(gameTokens)
+    .filter(([color]) => color !== 'gold')
+    .filter(([color, value]) => value > 0); 
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const color = e.currentTarget.dataset.color as Token;

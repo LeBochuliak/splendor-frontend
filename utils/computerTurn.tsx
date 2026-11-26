@@ -202,7 +202,7 @@ export const getAvailableActions = (game: Game, computer: Player): Action => {
             }
             return {
                 action: 'Take tokens',
-                tokens: tokensForTaking,
+                tokens: tokensForTaking.slice(0, 3),
             }
         }
 
