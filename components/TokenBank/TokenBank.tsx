@@ -10,8 +10,14 @@ import axios from 'axios'
 import type { Game } from '@/types/game';
 import { useActionStore } from '@/stores/actionStore';
 import { useCardStore } from '@/stores/cardStore';
+import type { Action } from '@/types/action';
+import { useComputerStore } from '@/stores/computerStore';
 
-const TokenBank = () => {
+interface TokenBankProps {
+  action?: Action | null;
+}
+
+const TokenBank = ({ action }: TokenBankProps) => {
   const { game } = useGamesStore();
   const updateSelectedTokens = useSelectedTokensStore(state => state.updateSelectedTokens);
   const updateIsActive = useSelectedTokensStore(state => state.updateIsActive);
@@ -26,6 +32,8 @@ const TokenBank = () => {
   const resetCardSelected = useCardStore((state) => state.resetCardSelected);
   const isCardSelected = useCardStore((state) => state.isCardSelected);
   const isTierSelected = useCardStore((state) => state.isTierSelected);
+  const computerPlayerId = useComputerStore((state) => state.computerPlayerId);
+  const isComputer = useComputerStore()
 
   useEffect(() => {
     resetSelectedTokens();
@@ -42,6 +50,7 @@ const TokenBank = () => {
       acc + value + newUpdateGame.tokens[color as Token],
     0
   );
+  const totalAvailableColors = Object.entries(gameTokens).filter(([color, value]) => value > 0); 
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const color = e.currentTarget.dataset.color as Token;
@@ -135,7 +144,10 @@ const TokenBank = () => {
   const selectedColorsArray = selectedColors.flatMap(([color, value]) =>
         value > 1 ? [color, color] : [color]);
 
-  const selectedColorPrev = Object.entries(selectedTokensPrev)
+  const selectedColorPrev = (isComputer && action?.tokens) ?
+        action?.tokens
+        :
+        Object.entries(selectedTokensPrev)
                                  .filter(([color, value]) => value > 0)
                                  .flatMap(([color, value]) =>
                                     value > 1 ? [color, color] : [color])
@@ -179,6 +191,7 @@ const TokenBank = () => {
                 cardPoints: 0
             });
             setGame(data.game);
+            resetSelectedTokens();
         },
         onError: (error, variables, context) => {
             if (axios.isAxiosError(error)) {
@@ -193,18 +206,31 @@ const TokenBank = () => {
           }
 
     })
+
+    useEffect(() => {
+      if (
+        game?.currentPlayerId === computerPlayerId &&
+        player &&
+        action?.action === 'Take tokens' && 
+        action.tokens &&
+        !mutation.isPending
+      ) 
+        mutation.mutate(action.tokens || []);
+      
+    }, [game?.currentPlayerId, computerPlayerId, player, action, mutation.isPending]);
+
     const handleConfirm = () => {
       const hasFewTokens = totalAvailableGems < 3;
+      const hasFewColors = totalAvailableColors.length < 3;
 
       const hasValidSelection =
         (selectedColorsDoubled.length > 0 &&
           selectedColorsArray.length === 2) ||
           selectedColorsArray.length === 3;
 
-      if (hasFewTokens || hasValidSelection) {
+      if (hasFewTokens || hasValidSelection || hasFewColors) {
         mutation.mutate(selectedColorsArray);
         
-        resetSelectedTokens();
       }
     };
     

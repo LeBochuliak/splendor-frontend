@@ -18,12 +18,12 @@ import { useGamesStore } from '@/stores/gameStore';
 import { useComputerStore } from '@/stores/computerStore';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-
+import { getAvailableActions } from '@/utils/computerTurn'
 
 
 export default function GameTable() {
   const setIsModalOpened = useModalStore((state) => state.setIsModalOpened);
-  const { isComputer} = useComputerStore();
+  const { isComputer, computerPlayerId} = useComputerStore();
   const setComputerPlayerId = useComputerStore((state) => state.setComputerPlayerId);
   const game = useGamesStore((state) => state.game);
   const [hydrated, setHydrated] = useState(false);
@@ -44,24 +44,37 @@ export default function GameTable() {
     }
   }, [hydrated, game, router]);
 
+  useEffect(() => {
+    if (isComputer) {
+      const computer = game?.players.find((player) => player.name === 'Computer');
+      if (computer) {
+        setComputerPlayerId(computer.id);
+      }
+    }
+  }, [isComputer, game?.players, setComputerPlayerId, computerPlayerId]);
+
   if (!hydrated || game?.players.length !== 2) {
     return null;
   }
-
+  
   const player = game?.players.find((player) => player.id === game.currentPlayerId);
 
+  const action =
+    game.currentPlayerId === computerPlayerId && player
+      ? getAvailableActions(game, player)
+      : null;
 
   return (
     <main>
     <div className="container">
-      <TokenBank />
+      <TokenBank action={action}/>
       <div className='cardsWrapper'>
         <NoblePatrons/>
         <DevelopmentCards />
       </div>
       <div className='columnWrapper'>
         <Opponent />
-        < ButtonBox />
+        < ButtonBox action = {action}/>
         <TableActive />
       </div>
     </div>
@@ -73,7 +86,7 @@ export default function GameTable() {
         <YourReservedCards />
       </div>
     </div>
-    {((player?.totalTokens ?? 0) > 10) && <Modal onClose={()=> setIsModalOpened(false)}><ReturnTokens/></Modal>}
+    {((player?.totalTokens ?? 0) > 10) && <Modal onClose={()=> setIsModalOpened(false)}><ReturnTokens action={action}/></Modal>}
     {game?.finalRound && game?.winner && <Modal onClose={()=> setIsModalOpened(false)}><Winner winner={game.winner} points={game.winner.points}/></Modal>}
     </main>
   );

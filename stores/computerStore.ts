@@ -4,7 +4,7 @@ interface ComputerStore {
     computerPlayerId: string | null;
     isComputer: boolean;
 
-    setComputerPlayerId: (computerPlayerId: string) => void;
+    setComputerPlayerId: (computerPlayerId: string | null) => void;
     setIsComputer: (isComputer: boolean) => void;
 }
 export const useComputerStore = create<ComputerStore>()((set) => ({

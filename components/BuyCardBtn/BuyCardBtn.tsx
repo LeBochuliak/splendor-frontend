@@ -5,8 +5,15 @@ import { useGamesStore } from '@/stores/gameStore';
 import { useCardStore } from '@/stores/cardStore';
 import { useActionStore } from '@/stores/actionStore';
 import { useSelectedTokensStore } from '@/stores/selectedTokensStore'
+import type { Action } from '@/types/action';
+import { useComputerStore } from '@/stores/computerStore';
+import { useEffect } from 'react';
 
-const BuyCardBtn = () => {
+interface BuyCardBtnProps {
+  action?: Action | null;
+}
+
+const BuyCardBtn = ( { action }: BuyCardBtnProps) => {
     const { game } = useGamesStore();
     const setGame = useGamesStore((state) => state.setGame);
     const { cardId, cardPoints } = useCardStore();
@@ -16,6 +23,7 @@ const BuyCardBtn = () => {
     const addAction = useActionStore(state => state.addAction);
     const isTierSelected = useCardStore((state) => state.isTierSelected);
     const { isActive } = useSelectedTokensStore();
+    const computerPlayerId = useComputerStore((state) => state.computerPlayerId);
 
     const isTokenSelected = Object.entries(isActive).some(([color, value]) => value === true);
     const player = game?.players.find((player) => player.id === game.currentPlayerId);
@@ -65,6 +73,19 @@ const BuyCardBtn = () => {
             }
         }
     })
+
+    useEffect(() => {
+          if (
+            game?.currentPlayerId === computerPlayerId &&
+            player &&
+            action?.action === 'Buy card' && 
+            !mutation.isPending
+          ) {
+            mutation.mutate(action.cardId || 0);
+            }
+    }
+    , [game?.currentPlayerId, computerPlayerId, player, action, mutation.isPending]);
+
     const handleClick = () => {
         mutation.mutate(cardId);
     }

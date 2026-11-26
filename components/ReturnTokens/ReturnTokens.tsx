@@ -2,20 +2,35 @@
 
 import styles from './ReturnTokens.module.css'
 import { useGamesStore } from '@/stores/gameStore'; 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { Token } from '@/types/tokens';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import type { Game } from '@/types/game';
 import { useActionStore } from '@/stores/actionStore';
+import type { Action } from '@/types/action';
+import { useComputerStore } from '@/stores/computerStore';
 
-const ReturnTokens = () => {
+
+interface ReturnTokensProps {
+  action?: Action | null;
+}
+
+const ReturnTokens = ({ action }: ReturnTokensProps) => {
     const { game } = useGamesStore();
     const you = game?.players.find(player => player.id === game.currentPlayerId);
     const totalTokensToReturn = (you?.totalTokens ?? 0) - 10;
     const [selectedTokens, setSelectedTokens] = useState<Token[]>([])
+    const [selectedTokensPrev, setSelectedTokensPrev] = useState<Token[]>([])
     const setGame = useGamesStore((state) => state.setGame);
     const addAction = useActionStore(state => state.addAction);
+    const computerPlayerId = useComputerStore((state) => state.computerPlayerId);
+    const { isComputer } = useComputerStore();
+
+
+    const player = game?.players.find((player) => player.id === game.currentPlayerId);
+
+    console.log(isComputer, action?.tokens,"PLAYER. ", player);
 
     const handleClickSelect = (e: React.MouseEvent<HTMLButtonElement>) => {
         const color = e.currentTarget.dataset.color as Token | undefined;
@@ -49,7 +64,7 @@ const ReturnTokens = () => {
             addAction({
                 id: crypto.randomUUID(),
                 playerName: you?.name || 'Player',
-                action: `return gems: ${selectedTokens.join(', ')}`,
+                action: (isComputer) ? `return gems: ${action?.tokens?.join(', ')}` : `return gems: ${selectedTokensPrev.join(', ')}`,
                 cardPoints: 0
             });
             setSelectedTokens([]);
@@ -65,8 +80,23 @@ const ReturnTokens = () => {
           }
 
     })
+
+    useEffect(() => {
+          if (
+            game?.currentPlayerId === computerPlayerId &&
+            player &&
+            action?.action === 'Return tokens' && 
+            action?.tokens &&
+            !mutation.isPending
+          ) {
+            mutation.mutate(action.tokens || []);
+          }
+    }, [game?.currentPlayerId, computerPlayerId, player, action, mutation.isPending]);
+    
+
     const handleConfirm = () => {
     if (selectedTokens.length === totalTokensToReturn) {
+        setSelectedTokensPrev(selectedTokens);
         mutation.mutate(selectedTokens);
     }
     };

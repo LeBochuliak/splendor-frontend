@@ -11,5 +11,7 @@ export interface Card {
         },
     resource: string,
     points: number,
+    pointsForComputer?: number,
 }
+
 export default Card;

@@ -4,9 +4,17 @@ import type { Game } from '@/types/game';
 import { useGamesStore } from '@/stores/gameStore';
 import { useCardStore } from '@/stores/cardStore'
 import { useActionStore } from '@/stores/actionStore';
-import { useSelectedTokensStore } from '@/stores/selectedTokensStore'
+import { useSelectedTokensStore } from '@/stores/selectedTokensStore';
+import type { Action } from '@/types/action';
+import { useComputerStore } from '@/stores/computerStore';
+import { useEffect } from 'react'
 
-const ReserveBtn = () => {
+
+interface ReserveBtnProps {
+  action?: Action | null;
+}
+
+const ReserveBtn = ({ action }: ReserveBtnProps) => {
     const { game } = useGamesStore();
     const setGame = useGamesStore((state) => state.setGame);
     const { cardId, levelSelected } = useCardStore();
@@ -17,7 +25,8 @@ const ReserveBtn = () => {
     const setIsTierSelected = useCardStore((state) => state.setIsTierSelected);
     const setCardId = useCardStore((state) => state.setCardId);
     const addAction = useActionStore(state => state.addAction);
-        const { isActive } = useSelectedTokensStore();
+    const { isActive } = useSelectedTokensStore();
+    const computerPlayerId = useComputerStore((state) => state.computerPlayerId);
 
 
     const isTokenSelected = Object.entries(isActive).some(([color, value]) => value === true);
@@ -57,6 +66,25 @@ const ReserveBtn = () => {
             }
         }
     })
+
+    useEffect(() => {
+          if (
+            game?.currentPlayerId === computerPlayerId &&
+            player &&
+            action?.action === 'Reserve card' && 
+            !mutation.isPending
+          ) {
+            console.log('Mutation started - reserve card', 'cardId:', action.cardId,
+                'level:', action.level);
+
+            mutation.mutate({
+                cardId: action.cardId,
+                level: action.level
+            });
+        }
+    }
+    , [game?.currentPlayerId, computerPlayerId, player, action, mutation.isPending]);
+
     const handleClick = () => {
         
         mutation.mutate({cardId, level: levelSelected});
